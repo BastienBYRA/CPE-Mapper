@@ -1,0 +1,15 @@
+{
+  "packages": [
+    {
+      "type": "maven",
+      "name": "tomcat-embed-core",
+      "group": "org.apache.tomcat.embed",
+      "cpe": "cpe:2.3:a:apache:tomcat:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "This mapping is provided because NVD attributes CVEs to apache:tomcat, not to the Java package tomcat-embed-core.",
+      "evidence": [
+        { "proof": "https://nvd.nist.gov/vuln/detail/CVE-2023-1234" },
+        { "proof": "https://nvd.nist.gov/vuln/detail/CVE-2022-5678" }
+      ]
+    }
+  ]
+}
