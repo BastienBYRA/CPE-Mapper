@@ -1,7 +1,6 @@
 {
   "packages": [
     {
-      "type": "maven",
       "name": "tomcat-embed-core",
       "group": "org.apache.tomcat.embed",
       "cpe": "cpe:2.3:a:apache:tomcat:VERSION_COMPONENT:*:*:*:*:*:*:*",
