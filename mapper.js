@@ -31,11 +31,6 @@ export const applyCPEMappings = (inputFile, outputFile, update, verbose) => {
         console.warn('No components found in BOM');
     } else {
         bom.components.forEach(component => {
-            if (!component.purl) {
-                if (verbose) console.log(`Skipping component without PURL: ${component.name}`);
-                return;
-            }
-
             const componentFullName = getComponentFullName(component.group, component.name);
             let cpeDbPkg = searchCpeMapping(componentFullName, cpeDb);
 
@@ -142,3 +137,17 @@ const searchCpeMapping = (componentFullName, cpeDb) => {
         if (cpeDbPkgFullName === componentFullName) return cpeDbPkg;
     });
 };
+
+/**
+ * Ugly way to export function for testing without making them public...
+ * If someone have a better way to do that, that is shorter, go with it
+ * 
+ * I just want the solution to be elegant, simple to understand, and not dependant of an external package
+ */
+export let TEST__MAPPER_JS
+if (process.env.NODE_ENV !== 'test') {
+  TEST__MAPPER_JS = {
+    getComponentFullName,
+    searchCpeMapping
+  };
+}
