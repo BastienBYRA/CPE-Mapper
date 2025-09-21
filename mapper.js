@@ -1,19 +1,23 @@
 import fs from 'fs';
 import path from 'path';
+import { updateCPEDatabase } from './update.js';
 
 /**
  * Maps a BOM file to its corresponding CPE format.
  *
  * @param {string} inputFile - Path to the input BOM file.
  * @param {string} outputFile - Path to the output mapped BOM file.
+ * @param {boolean} update - Whether to check for updates to the CPE mapping database.
  * @param {boolean} verbose - Whether to enable verbose logging.
  * @returns {boolean} True if mapping succeeds, false otherwise.
  * @throws {Error} If the input file is invalid or mapping fails unexpectedly.
  */
-export const applyCPEMappings = (inputFile, outputFile, verbose) => {
+export const applyCPEMappings = (inputFile, outputFile, update, verbose) => {
     if (verbose) console.log('Starting CPE mapping process...');
     if (verbose) console.log(`Input file: ${inputFile}`);
     if (verbose) console.log(`Output file: ${outputFile}`);
+
+    if (update) updateCPEDatabase();
 
     // Load BOM
     const bom = loadBomFile(inputFile);
