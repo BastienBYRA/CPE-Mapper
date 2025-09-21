@@ -66,6 +66,7 @@ While the project is almost ready as of today, there are still some features to 
   - [ ] Possibly ARCHITECTURE.md
 - [ ] Add license header to each file with author information
 - [ ] Add atleast 25+ mapping to have something to work off
+- [ ] Add the flag `--override-cpe` on the `apply` command : Tell the program that it can override the CPE from the given SBOM file
 
 ## High Priority
 - [ ] Improve `apply` command with `--custom-db-path` option, allowing users to provide a custom CPE mapping database
