@@ -14,10 +14,17 @@ program.command('apply')
   .description('Apply CPE mappings to a CycloneDX BOM file')
   .requiredOption('-i, --input-file <file>', 'Input BOM file (JSON)')
   .requiredOption('-o, --output-file <file>', 'Output mapped BOM file')
+  .option('-u, --update', "Update the CPE Mapping database")
   .option('-v, --verbose', 'Enable verbose logging')
   .action((options) => {
-    const { inputFile, outputFile, verbose } = options;
-    applyCPEMappings(inputFile, outputFile, verbose)
+    const { inputFile, outputFile, update, verbose } = options;
+    applyCPEMappings(inputFile, outputFile, update, verbose)
   });
+
+program.command("update")
+  .description('Update the CPE mappings database')
+  .action(() => {
+    updateCPEDatabase()
+  })
 
 program.parse();
