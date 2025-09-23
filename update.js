@@ -6,13 +6,14 @@ import { writeFileSync, readFileSync } from 'node:fs';
  * If differences are detected, the local file is replaced with the distant version.
  *
  * @async
+ * @param {object} appConfig - The application configuration.
  * @returns {Promise<void>} Resolves when the update process is complete.
  * @throws {Error} If the distant database cannot be retrieved.
  */
-export const updateCPEDatabase = async () => {
-    const distantDbData = await getDistantDatabaseData()
+export const updateCPEDatabase = async (appConfig) => {
+    const distantDbData = await getDistantDatabaseData(appConfig.dbURL)
 
-    const localDbHash = getLocalDatabaseHash()
+    const localDbHash = getLocalDatabaseHash(appConfig.dbOsPath)
     const distantDbHash = await getDistantDatabaseHash(distantDbData)
 
     if (localDbHash === distantDbHash) {
@@ -27,12 +28,11 @@ export const updateCPEDatabase = async () => {
  * Retrieves the distant CPE mapping database from the GitHub repository.
  *
  * @async
+ * @param {string} url The URL of the distant CPE mapping database (JSON file).
  * @returns {Promise<object>} The parsed JSON content of the distant database.
  * @throws {Error} If the database cannot be fetched or parsed.
  */
-const getDistantDatabaseData = async () => {
-    const url = "https://raw.githubusercontent.com/BastienBYRA/CPE-Mapper/refs/heads/main/data/cpe-mapper.json";
-
+const getDistantDatabaseData = async (url) => {
     try {
         const response = await fetch(url);
         return await response.json();
@@ -45,11 +45,12 @@ const getDistantDatabaseData = async () => {
 /**
  * Computes the SHA-256 hash of the local CPE database file.
  *
+ * @param {string} filepath Path to the local CPE mapping database file.
  * @returns {string|undefined} The computed hash, or undefined if the local file is missing.
  */
-const getLocalDatabaseHash = () => {
+const getLocalDatabaseHash = (filepath) => {
     try {
-        const dataFile = readFileSync("data/cpe-mapper.json", "utf-8");
+        const dataFile = readFileSync(filepath, "utf-8");
         const hash = createHash("sha256").update(dataFile).digest("hex");
         return hash
     } catch {
@@ -57,6 +58,7 @@ const getLocalDatabaseHash = () => {
         return undefined
     }
 }
+
 
 /**
  * Computes the SHA-256 hash of the distant CPE database data.

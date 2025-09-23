@@ -9,10 +9,11 @@ import { updateCPEDatabase } from './update.js';
  * @param {string} outputFile - Path to the output mapped BOM file.
  * @param {boolean} update - Whether to check for updates to the CPE mapping database.
  * @param {boolean} verbose - Whether to enable verbose logging.
+ * @param {object} appConfig - The application configuration.
  * @returns {boolean} True if mapping succeeds, false otherwise.
  * @throws {Error} If the input file is invalid or mapping fails unexpectedly.
  */
-export const applyCPEMappings = (inputFile, outputFile, update, verbose) => {
+export const applyCPEMappings = (inputFile, outputFile, update, verbose, appConfig) => {
     if (verbose) console.log('Starting CPE mapping process...');
     if (verbose) console.log(`Input file: ${inputFile}`);
     if (verbose) console.log(`Output file: ${outputFile}`);
@@ -23,7 +24,7 @@ export const applyCPEMappings = (inputFile, outputFile, update, verbose) => {
     const bom = loadBomFile(inputFile);
 
     // Load CPE Mapping database
-    const cpeDb = loadCpeMappingDatabase();
+    const cpeDb = loadCpeMappingDatabase(appConfig.dbOsPath);
     if (verbose) console.log('CPE database loaded successfully');
 
     // Mapping logic
@@ -80,8 +81,8 @@ const loadBomFile = (inputFile) => {
  * @returns {object} Parsed CPE mapping database.
  * @throws {Error} If the mapping database does not exist or is not valid JSON.
  */
-const loadCpeMappingDatabase = () => {
-    const dbPath = path.resolve('data/cpe-mapper.json');
+const loadCpeMappingDatabase = (localDatabaseFilePath) => {
+    const dbPath = path.resolve(localDatabaseFilePath);
     if (!fs.existsSync(dbPath)) {
         console.error(`CPE database not found at ${dbPath}`);
         process.exit(1);

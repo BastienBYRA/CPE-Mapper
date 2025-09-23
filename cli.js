@@ -1,8 +1,10 @@
 import { Command } from 'commander';
 import { applyCPEMappings } from "./mapper.js";
 import { updateCPEDatabase } from "./update.js"
+import { setupAppConfig } from './config.js';
 
 const program = new Command();
+const appConfig = setupAppConfig()
 
 program
   .name('cpe-mapper')
@@ -18,13 +20,13 @@ program.command('apply')
   .option('-v, --verbose', 'Enable verbose logging')
   .action((options) => {
     const { inputFile, outputFile, update, verbose } = options;
-    applyCPEMappings(inputFile, outputFile, update, verbose)
+    applyCPEMappings(inputFile, outputFile, update, verbose, appConfig)
   });
 
 program.command("update")
   .description('Update the CPE mappings database')
   .action(() => {
-    updateCPEDatabase()
+    updateCPEDatabase(appConfig)
   })
 
 program.parse();
