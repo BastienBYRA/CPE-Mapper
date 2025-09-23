@@ -1,3 +1,5 @@
+import { existsSync } from "fs"
+
 export const isBoolean = (value) => {
     return (/true|false|True|False/).test(value)
 }
@@ -7,5 +9,5 @@ export const isURL = (url) => {
 }
 
 export const isFilePath = (filepath) => {
-    return fs.existsSync(filepath) 
+    return existsSync(filepath) 
 }
