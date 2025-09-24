@@ -7,6 +7,8 @@
   "scripts": {
     "start": "node cli.js",
     "help": "node cli.js help",
+    "test": "NODE_ENV=test node --test",
+    "wtest": "set NODE_ENV=test&& node --test",
     "test-apply": "node cli.js apply -i testdata/bom.test.json -o testdata/result.test.json"
   },
   "repository": {

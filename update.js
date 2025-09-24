@@ -7,21 +7,22 @@ import { writeFileSync, readFileSync } from 'node:fs';
  *
  * @async
  * @param {object} appConfig - The application configuration.
- * @returns {Promise<void>} Resolves when the update process is complete.
  * @throws {Error} If the distant database cannot be retrieved.
  */
 export const updateCPEDatabase = async (appConfig) => {
     const distantDbData = await getDistantDatabaseData(appConfig.dbURL)
 
     const localDbHash = getLocalDatabaseHash(appConfig.dbOsPath)
-    const distantDbHash = await getDistantDatabaseHash(distantDbData)
+    const distantDbHash = getDistantDatabaseHash(distantDbData)
+
+    console.log(localDbHash)
+    console.log(distantDbHash)
 
     if (localDbHash === distantDbHash) {
         console.info("The database is already up-to-date!")
-        return;
+    } else {
+        writeFileSync(appConfig.dbOsPath, JSON.stringify(distantDbData, null, 2), "utf-8");
     }
-
-    writeFileSync("data/cpe-mapper.json", JSON.stringify(distantDbData, null, 2), "utf-8");
 }
 
 /**
@@ -51,7 +52,10 @@ const getDistantDatabaseData = async (url) => {
 const getLocalDatabaseHash = (filepath) => {
     try {
         const dataFile = readFileSync(filepath, "utf-8");
-        const hash = createHash("sha256").update(dataFile).digest("hex");
+
+        // Need to Parse then Stringify to transform it in a "one-liner" JSON the same way the API does.
+        const jsonString = JSON.stringify(JSON.parse(dataFile));
+        const hash = createHash("sha256").update(jsonString).digest("hex");
         return hash
     } catch {
         console.warn("Impossible to find the local database file, a new one will be created");
@@ -63,12 +67,30 @@ const getLocalDatabaseHash = (filepath) => {
 /**
  * Computes the SHA-256 hash of the distant CPE database data.
  *
- * @async
  * @param {object} distantDbData - The JSON data of the distant CPE database.
- * @returns {Promise<string>} The computed hash of the distant database content.
+ * @returns {string|undefined} The computed hash of the distant database content, or undefined if no data.
  */
-const getDistantDatabaseHash = async (distantDbData) => {
+const getDistantDatabaseHash = (distantDbData) => {
+    if (!distantDbData) return undefined;
+    
     const jsonString = JSON.stringify(distantDbData);
     const hash = createHash("sha256").update(jsonString).digest("hex");
-    return hash;
+    return hash
 };
+
+
+/**
+ * !!! To succesfully run, NODE_ENV must be "test"
+ * 
+ * Ugly way to export function for testing without making them public...
+ * If someone have a better way to do that, that is shorter, go with it
+ * 
+ * I just want the solution to be elegant, simple to understand, and not dependant of an external package
+ */
+export let TEST__UPDATE_JS
+if (process.env.NODE_ENV === 'test') {
+  TEST__UPDATE_JS = {
+    getLocalDatabaseHash,
+    getDistantDatabaseHash
+  };
+}
