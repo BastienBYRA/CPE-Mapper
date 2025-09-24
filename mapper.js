@@ -140,10 +140,10 @@ const searchCpeMapping = (componentFullName, cpeDb) => {
 };
 
 /**
+ * !!! To succesfully run, NODE_ENV must be "test"
+ * 
  * Ugly way to export function for testing without making them public...
  * If someone have a better way to do that, that is shorter, go with it
- * 
- * !!! To succesfully run, NODE_ENV must be "test"
  * 
  * I just want the solution to be elegant, simple to understand, and not dependant of an external package
  */
