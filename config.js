@@ -1,5 +1,18 @@
 import { isBoolean, isFilePath, isURL } from "./utils.js"
 
+/**
+ * @typedef {Object} AppConfig
+ * @property {string} dbURL
+ * @property {string} dbOsPath
+ * @property {boolean} customDbEnabled
+ * @property {string|undefined} customDbOsPath
+ * @property {string|undefined} customDbURL
+ * @property {string|undefined} customDbSaveFilePath
+ */
+
+/**
+ * @returns {AppConfig}
+ */
 export const setupAppConfig = () => {
     var customDbEnabled = process.env.CUSTOM_DB_ENABLED
     const customDbOsPath = process.env.CUSTOM_DB_OS_PATH
