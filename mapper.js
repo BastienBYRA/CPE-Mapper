@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { updateCPEDatabase } from './update.js';
+import { AppConfig } from './config.js';
 
 /**
  * Maps a BOM file to its corresponding CPE format.
@@ -9,7 +10,7 @@ import { updateCPEDatabase } from './update.js';
  * @param {string} outputFile - Path to the output mapped BOM file.
  * @param {boolean} update - Whether to check for updates to the CPE mapping database.
  * @param {boolean} verbose - Whether to enable verbose logging.
- * @param {object} appConfig - The application configuration.
+ * @param {AppConfig} appConfig - The application configuration.
  * @returns {boolean} True if mapping succeeds, false otherwise.
  * @throws {Error} If the input file is invalid or mapping fails unexpectedly.
  */

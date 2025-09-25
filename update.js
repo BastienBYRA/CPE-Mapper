@@ -1,12 +1,13 @@
 import { createHash } from 'node:crypto';
 import { writeFileSync, readFileSync } from 'node:fs';
+import { AppConfig } from './config.js';
 
 /**
  * Updates the local CPE mapping database by comparing its hash with the distant database.
  * If differences are detected, the local file is replaced with the distant version.
  *
  * @async
- * @param {object} appConfig - The application configuration.
+ * @param {AppConfig} appConfig - The application configuration.
  * @throws {Error} If the distant database cannot be retrieved.
  */
 export const updateCPEDatabase = async (appConfig) => {
