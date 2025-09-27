@@ -23,7 +23,7 @@ npm install -g @bastienbyra/cpe-mapper
 It is also possible to use the `Docker image`.
 ```bash
 # Not ready yet
-docker run --name cpe-mapper -v ./:/data --rm bastienbyra/cpe-mapper:latest apply -i bom.json -o mapped_bom.json
+docker run --name cpe-mapper -v ./:/data --rm ghcr.io/bastienbyra/cpe-mapper:latest apply -i bom.json -o mapped_bom.json
 ```
 
 ---
@@ -53,29 +53,7 @@ Commands:
 
 ---
 
-# Roadmap / TODO
-While the project is almost ready as of today, there are still some features to implement that could provide value to users.
+# Roadmap
+While the project is approaching its ready state, there are still some features to implement that could provide value to users.
 
-## Mandatory for 1.0.0
-- [ ] Create CI/CD pipelines for both the NPM package and Docker build
-- [ ] Write documentation (README.md or GitHub Wiki section)
-- [ ] Add important project files:
-  - [ ] CONTRIBUTING.md
-  - [ ] SECURITY.md
-  - [ ] CHANGELOG.md
-  - [ ] Possibly ARCHITECTURE.md
-- [ ] Add license header to each file with author information
-- [ ] Add atleast 25+ mapping to have something to work off
-- [ ] Add the flag `--override-cpe` on the `apply` command : Tell the program that it can override the CPE from the given SBOM file
-
-## High Priority
-- [ ] Improve `apply` command with `--custom-db-path` option, allowing users to provide a custom CPE mapping database
-- [ ] Add support for SPDX 2.x JSON format
-- [ ] Command `search`: Search if a package already has a mapping in the database using `--groupname`, `--name`, or `--fullname`
-- [ ] Add support for XML files (will probably require a dependency)
-- [ ] Add unit tests (will probably require a dependency)
-- [ ] Add integration tests (likely without extra dependencies, by running the CLI in a dev environment such as a Docker container)
-
-## Bonus
-- [ ] Command `compliance` with the following subcommands:
-  - [ ] `sbom`: Generate the SBOM for the current version of the CLI
+The ROAMDAP is available [in the ROADMAP.md file](./ROADMAP.md)
