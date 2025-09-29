@@ -1,6 +1,6 @@
 import { Command } from 'commander';
-import { applyCPEMappings } from "./mapper.js";
-import { updateCPEDatabase } from "./update.js"
+import { applyCPEMappings } from "./commands/mapper.js";
+import { updateCPEDatabase } from "./commands/update.js"
 import { setupAppConfig } from './config.js';
 
 const program = new Command();

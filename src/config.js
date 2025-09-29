@@ -9,12 +9,14 @@ import { isBoolean, isFilePath, isURL } from "./utils.js"
  * @property {string|undefined} customDbURL
  * @property {string|undefined} customDbSaveFilePath
  */
+// Allows us to export JSDoc from AppConfig to other files
+export const AppConfig = {}
 
 /**
  * @returns {AppConfig}
  */
 export const setupAppConfig = () => {
-    var customDbEnabled = process.env.CUSTOM_DB_ENABLED
+    let customDbEnabled = process.env.CUSTOM_DB_ENABLED
     const customDbOsPath = process.env.CUSTOM_DB_OS_PATH
     const customDbURL = process.env.CUSTOM_DB_URL
     const customDbSaveFilePath = process.env.CUSTOM_DB_SAVE_FILE_PATH

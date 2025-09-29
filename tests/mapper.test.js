@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert';
-import { TEST__MAPPER_JS } from '../mapper.js';
+import { TEST__MAPPER_JS } from '../src/commands/mapper.js';
 const { getComponentFullName, searchCpeMapping } = TEST__MAPPER_JS
 
 /**

@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { writeFileSync, readFileSync } from 'node:fs';
-import { AppConfig } from './config.js';
+import { AppConfig } from '../config.js';
 
 /**
  * Updates the local CPE mapping database by comparing its hash with the distant database.
@@ -16,13 +16,11 @@ export const updateCPEDatabase = async (appConfig) => {
     const localDbHash = getLocalDatabaseHash(appConfig.dbOsPath)
     const distantDbHash = getDistantDatabaseHash(distantDbData)
 
-    console.log(localDbHash)
-    console.log(distantDbHash)
-
     if (localDbHash === distantDbHash) {
         console.info("The database is already up-to-date!")
     } else {
         writeFileSync(appConfig.dbOsPath, JSON.stringify(distantDbData, null, 2), "utf-8");
+        console.info("CPE database updated successfully");
     }
 }
 

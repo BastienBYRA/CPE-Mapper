@@ -2,14 +2,14 @@
   "name": "cpe-mapper",
   "version": "0.1.0",
   "description": "CPE-mapper is a CLI tool and JSON-based database designed to accurately map software package names to their corresponding CPEs (Common Platform Enumerations). Its main goal is to improve vulnerability identification in cases where standard package names fail to match known CPEs",
-  "main": "cli.js",
+  "main": "src/cli.js",
   "type": "module",
   "scripts": {
-    "start": "node cli.js",
-    "help": "node cli.js help",
+    "start": "node src/cli.js",
+    "help": "node src/cli.js help",
     "test": "NODE_ENV=test node --test",
     "wtest": "set NODE_ENV=test&& node --test",
-    "test-apply": "node cli.js apply -i testdata/bom.test.json -o testdata/result.test.json"
+    "test-apply": "node src/cli.js apply -i testdata/bom.test.json -o testdata/result.test.json"
   },
   "repository": {
     "type": "git",
