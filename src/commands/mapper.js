@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { updateCPEDatabase } from './update.js';
-import { AppConfig } from './config.js';
+import { AppConfig } from '../config.js';
 
 /**
  * Maps a BOM file to its corresponding CPE format.
@@ -53,6 +53,7 @@ export const applyCPEMappings = (inputFile, outputFile, update, verbose, appConf
 
     // Save mapped BOM
     generateMappedFile(outputFile, verbose, bom);
+    console.info("BOM mapping has successfully finished");
     return true;
 }
 
