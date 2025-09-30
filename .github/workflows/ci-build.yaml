@@ -1,0 +1,35 @@
+name: Build CI
+
+on:
+  push:
+    tags:
+      - "*"
+
+env:
+  IMAGE_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
+
+jobs:
+  build-image:
+    needs: run-tests
+    runs-on: ubuntu-latest
+    steps:
+      # - name: Login to GitHub Container Registry
+      #   uses: docker/login-action@v3
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: false
+          tags: |
+            ghcr.io/bastienbyra/cpe-mapper:${{ env.IMAGE_VERSION }}
+            ghcr.io/bastienbyra/cpe-mapper:latest
