@@ -1,0 +1,8 @@
+.github/
+testdata/
+data/
+tests/
+node_modules/
+.gitignore
+*.md
+!README.md
