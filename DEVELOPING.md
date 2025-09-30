@@ -5,7 +5,7 @@
 This project tech stack is simple:
 | Tech stack | Version |
 |---|---|
-| Node.js | >= 22.11.0 |
+| Node.js | >= 22 |
 
 That's it!! If you have a Node.js on your system, and an IDE, you're good to go!
 
