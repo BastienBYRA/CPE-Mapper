@@ -12,6 +12,9 @@ on:
       - 'package.json'
       - 'package-lock.json'
 
+env:
+  IMAGE_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
+
 jobs:
   run-tests:
     runs-on: ubuntu-latest
@@ -49,3 +52,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: false
+          tags: |
+            ghcr.io/bastienbyra/cpe-mapper:${{ env.IMAGE_VERSION }}
+            ghcr.io/bastienbyra/cpe-mapper:latest
