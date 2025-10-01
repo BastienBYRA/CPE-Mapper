@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
-import { writeFileSync, readFileSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'node:fs';
+import { dirname } from 'node:path';
 import { AppConfig } from '../config.js';
 
 /**
@@ -19,7 +20,7 @@ export const updateCPEDatabase = async (appConfig) => {
     if (localDbHash === distantDbHash) {
         console.info("The database is already up-to-date!")
     } else {
-        writeFileSync(appConfig.dbOsPath, JSON.stringify(distantDbData, null, 2), "utf-8");
+        updateDatabaseContent(appConfig.dbOsPath, distantDbData)
         console.info("CPE database updated successfully");
     }
 }
@@ -76,6 +77,27 @@ const getDistantDatabaseHash = (distantDbData) => {
     const hash = createHash("sha256").update(jsonString).digest("hex");
     return hash
 };
+
+/**
+ * Updates (or creates) the local CPE database file with the given data.
+ *
+ * Ensures that the parent directory of the target file exists,
+ * creating it recursively if necessary.
+ *
+ * @param {string} filepath - Path to the local CPE mapping database file.
+ * @param {object} data - The JSON data to be written into the database file.
+ * @returns {void}
+ * @throws {Error} If the file cannot be written.
+ */
+const updateDatabaseContent = (filepath, data) => {
+    // Create the folder(s) for the CPE Database file if it does not exist
+    if (!existsSync(filepath)) {
+        mkdirSync(dirname(filepath), { recursive: true });
+    }
+
+    writeFileSync(filepath, JSON.stringify(data, null, 2), "utf-8");
+};
+
 
 
 /**
