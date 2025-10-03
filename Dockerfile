@@ -10,7 +10,6 @@ LABEL org.opencontainers.image.licenses="Apache-2.0"7
 LABEL org.opencontainers.image.created=""
 LABEL org.opencontainers.image.revision=""
 
-
 WORKDIR /cpe-mapper
 
 COPY package*.json .
