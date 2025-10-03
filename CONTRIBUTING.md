@@ -16,7 +16,7 @@ Use **Issues** to report bugs or to track features that have already been agreed
 Please open **one issue per problem or feature** to keep things clear and easy to track.
 
 ## How to Contribute
-If you’d like to contribute, feel free to pick **any task** from the TODO section in the [ROADMAP.md](./ROADMAP.md).
+If you’d like to contribute, make sure that your development environment is ready [(DEVOPING.md)](./DEVOPING.md), and feel free to pick **any task** from the TODO section in the [ROADMAP.md](./ROADMAP.md).
 
 To get started:
 1. Choose a task from the roadmap.
