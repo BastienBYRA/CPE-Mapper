@@ -1,4 +1,6 @@
 import { isBoolean, isFilePath, isURL } from "./utils.js"
+import envPaths from 'env-paths';
+import path from "node:path";
 
 /**
  * @typedef {Object} AppConfig
@@ -56,11 +58,13 @@ export const setupAppConfig = () => {
 }
 
 const configureAppConfig = (customDbEnabled, customDbOsPath, customDbURL, customDbSaveFilePath) => {
+    const osSpecificPaths = envPaths('cpe-mapper');
+
     const APP_CONFIG = {
         "dbURL": "https://raw.githubusercontent.com/BastienBYRA/CPE-Mapper/refs/heads/main/data/cpe-mapper.json",
         
-        // Should be customizable
-        "dbOsPath": "data/cpe-mapper.json",
+        // Should be customizable in the future
+        "dbOsPath": path.resolve(osSpecificPaths.data + "data/cpe-mapper.json"),
         
         // NOT IMPLEMENTED YET
         // For later use
