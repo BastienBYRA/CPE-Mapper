@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { Command } from 'commander';
 import { applyCPEMappings } from "./commands/mapper.js";
 import { updateCPEDatabase } from "./commands/update.js"
