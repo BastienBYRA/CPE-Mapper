@@ -16,7 +16,7 @@ Its main goal is to improve vulnerability identification in cases where standard
 # Getting Started
 
 ## Installing
-You can install Tunix in several ways:
+You can install CPE-mapper in several ways:
 
 1. From `npm`.
 ```bash
