@@ -24,7 +24,6 @@ Optional features or ideas that don’t provide much value but could be fun or i
 # TODO
 
 ## Mandatory (for 1.0.0)
-- [ ] Create CI/CD pipelines for both the NPM package and Docker build
 - [ ] Write documentation (README.md or GitHub Wiki section)
 - [ ] Add license header to each file with author information
 - [ ] Add atleast 25+ mapping to have something to work off
@@ -48,7 +47,8 @@ Optional features or ideas that don’t provide much value but could be fun or i
 # DONE
 
 ## Mandatory
-- [ ] Add important project files:
+- [x] Create CI/CD pipelines for both the NPM package and Docker build
+- [x] Add important project files:
   - [x] CONTRIBUTING.md
   - [x] DEVELOPING.md
   - [x] ROADMAP.md
