@@ -13,47 +13,66 @@ Its main goal is to improve vulnerability identification in cases where standard
 
 ---
 
-# Installing (TODO)
-You can install it through `npm`.
+# Getting Started
+
+## Installing
+You can install Tunix in several ways:
+
+1. From `npm`.
 ```bash
-# Not ready yet
 npm install -g @bastienbyra/cpe-mapper
+
+# You can then run it using `cpe-mapper`
 ```
 
-It is also possible to use the `Docker image`.
+2. Through `Docker image`.
 ```bash
-# Not ready yet
-docker run --name cpe-mapper -v ./:/data --rm ghcr.io/bastienbyra/cpe-mapper:latest apply -i bom.json -o mapped_bom.json
+docker run -v path/to/your/bom/folder:/data --rm ghcr.io/bastienbyra/cpe-mapper:latest apply -i /data/bom.json -o /data/mapped_bom.json
 ```
 
----
+## Commands
 
-# Usage
+### Apply
 ```bash
-    ________  ____    __  ___                      
-   / ___/ _ \/ __/___/  |/  /__ ____  ___  ___ ____
-  / /__/ ___/ _//___/ /|_/ / _ `/ _ \/ _ \/ -_) __/
-  \___/_/  /___/   /_/  /_/\_,_/ .__/ .__/\__/_/   
-                              /_/  /_/             
+Usage: cpe-mapper apply [options]
 
-Usage: cpe-mapper [options] [command]
-
-CPE-mapper is a CLI tool and JSON-based database designed to accurately map software package names to their corresponding CPEs (Common Platform Enumerations).
-Its main goal is to improve vulnerability identification in cases where standard package names fail to match known CPEs.
+Apply CPE mappings to a CycloneDX BOM file
 
 Options:
-  -V, --version    output the version number
-  -h, --help       display help for command
-
-Commands:
-  apply [options]  Apply CPE mappings to a CycloneDX BOM file
-  update           Update the CPE mappings database
-  help [command]   display help for command
+  -i, --input-file <file>   Input BOM file (JSON)
+  -o, --output-file <file>  Output mapped BOM file
+  -u, --update              Update the CPE Mapping database
+  --override-cpe            Override BOM CPEs with mapped values from our database
+  -v, --verbose             Enable verbose logging
+  -h, --help                display help for command
+```
+#### Example
+Apply CPE-mapper database mappings to a BOM file
+```bash
+cpe-mapper apply -i input-bom.json -o output-bom.json
 ```
 
+Apply CPE-mapper database mappings to a BOM file, overwriting the existing CPEs in the input file.
+```bash
+cpe-mapper apply -i input-bom.json -o output-bom.json --override-cpe
+```
+
+### Update
+```bash
+Usage: cpe-mapper update [options]
+
+Update the CPE mappings database
+
+Options:
+  -h, --help  display help for command
+```
+
+#### Example
+Check if the database has updates and apply them.
+```bash
+cpe-mapper update
+```
 ---
 
 # Roadmap
-While the project is approaching its ready state, there are still some features to implement that could provide value to users.
-
-The ROAMDAP is available [in the ROADMAP.md file](./ROADMAP.md)
+If you wish to contribute to this project, whether by working on new features or by adding new entries to the CPE database, please check both [CONTRIBUTING](./CONTRIBUTING.md) and [ROADMAP](./ROADMAP.md) files.
