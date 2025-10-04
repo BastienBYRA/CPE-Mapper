@@ -39,10 +39,10 @@
       ]
     },
     {
-      "name": "logback-classic",
+      "name": "logback-core",
       "group": "ch.qos.logback",
       "cpe": "cpe:2.3:a:qos:logback:VERSION_COMPONENT:*:*:*:*:*:*:*",
-      "description": "NVD maps QOS Logback CVEs to qos:logback, missing the package ch.qos.logback:logback-classic",
+      "description": "NVD maps QOS Logback CVEs to qos:logback, missing the package ch.qos.logback:logback-core",
       "evidence": [
         "https://nvd.nist.gov/vuln/detail/cve-2023-6378", "https://nvd.nist.gov/vuln/detail/cve-2017-5929"
       ]
@@ -84,10 +84,10 @@
       ]
     },
     {
-      "name": "spring-context",
+      "name": "spring-core",
       "group": "org.springframework",
       "cpe": "cpe:2.3:a:vmware:spring_framework:VERSION_COMPONENT:*:*:*:*:*:*:*",
-      "description": "NVD maps Spring Context to vmware:spring_framework, missing the package org.springframework:spring-context",
+      "description": "NVD maps Spring Core to vmware:spring_framework, missing the package org.springframework:spring-core",
       "evidence": [
         "https://nvd.nist.gov/vuln/detail/CVE-2024-38820", "https://nvd.nist.gov/vuln/detail/cve-2022-22968"
       ]
@@ -109,6 +109,84 @@
       "evidence": [
         "https://nvd.nist.gov/vuln/detail/cve-2020-13956", "https://nvd.nist.gov/vuln/detail/CVE-2015-5262",
         "https://nvd.nist.gov/vuln/detail/cve-2014-3577"
+      ]
+    },
+    {
+      "name": "okhttp",
+      "group": "com.squareup.okhttp3",
+      "cpe": "cpe:2.3:a:squareup:okhttp:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Square OkHttp CVEs to square:okhttp, missing the package com.squareup.okhttp3:okhttp",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-0833"
+      ]
+    },
+    {
+      "name": "okhttp-brotli",
+      "group": "com.squareup.okhttp3",
+      "cpe": "cpe:2.3:a:squareup:okhttp-brotli:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Square OkHttp-brotli CVEs to square:okhttp, missing the package com.squareup.okhttp3:okhttp",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-3782"
+      ]
+    },
+    {
+      "name": "log4j-core",
+      "group": "org.apache.logging.log4j",
+      "cpe": "cpe:2.3:a:apache:log4j:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Log4j CVEs to apache:log4j, missing the package org.apache.logging.log4j:log4j-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-44228",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-45046",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-44832"
+      ]
+    },
+    {
+      "name": "testng",
+      "group": "org.testng",
+      "cpe": "cpe:2.3:a:testng_project:testng:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps TestNG CVEs to testng_project:testng, missing the package org.testng:testng",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-4065"
+      ]
+    },
+    {
+      "name": "mysql-connector-j",
+      "group": "com.mysql",
+      "cpe": "cpe:2.3:a:oracle:mysql_connector\/j:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps MySQL Connector/J CVEs to oracle:mysql_connector\/j, missing the package com.mysql:mysql-connector-j",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-22102"
+      ]
+    },
+    {
+      "name": "commons-collections4",
+      "group": "org.apache.commons",
+      "cpe": "cpe:2.3:a:apache:commons_collections:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Commons Collections4 CVEs to apache:commons-collections, missing the package org.apache.commons:commons-collections4",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2015-6420"
+      ]
+    },
+    {
+      "name": "json",
+      "group": "org.json",
+      "cpe": "cpe:2.3:a:stleary:json-java:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps JSON-Java CVEs to stleary:json-java, missing the package org.json:json",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-5072", "https://nvd.nist.gov/vuln/detail/cve-2022-45688"
+      ]
+    },
+    {
+      "name": "protobuf-java",
+      "group": "com.google.protobuf",
+      "cpe": "cpe:2.3:a:google:protobuf-java:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Google Protobuf Java CVEs to google:protobuf-java, missing the package com.google.protobuf:protobuf-java",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-7254",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-3171",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-3509",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-3510",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-22569"
       ]
     }
   ]
