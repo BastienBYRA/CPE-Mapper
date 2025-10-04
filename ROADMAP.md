@@ -27,7 +27,6 @@ Optional features or ideas that don’t provide much value but could be fun or i
 - [ ] Write documentation (README.md or GitHub Wiki section)
 - [ ] Add license header to each file with author information
 - [ ] Add atleast 25+ mapping to have something to work off
-- [ ] Add the flag `--override-cpe` on the `apply` command : Tell the program that it can override the CPE from the given SBOM file
 
 ## High Priority
 - [ ] Improve `apply` command with `--custom-db-path` and `--custom-db-url` options, allowing users to provide a custom CPE mapping database
@@ -41,22 +40,3 @@ Optional features or ideas that don’t provide much value but could be fun or i
 ## Bonus
 - [ ] Command `compliance` with the following subcommands:
   - [ ] `sbom`: Get the SBOM for the current version of the CLI
-
----
-
-# DONE
-
-## Mandatory
-- [x] Create CI/CD pipelines for both the NPM package and Docker build
-- [x] Add important project files:
-  - [x] CONTRIBUTING.md
-  - [x] DEVELOPING.md
-  - [x] ROADMAP.md
-  - [x] CHANGELOG.md
-- [x] Add unit tests for mapper.js and update.js
-
-## High Priority
-
-## Low Priority
-
-## Bonus

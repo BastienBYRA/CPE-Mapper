@@ -20,9 +20,10 @@ program.command('apply')
   .requiredOption('-o, --output-file <file>', 'Output mapped BOM file')
   .option('-u, --update', "Update the CPE Mapping database")
   .option('-v, --verbose', 'Enable verbose logging')
+  .option('--override-cpe', 'Override BOM CPEs with mapped values from our database')
   .action((options) => {
-    const { inputFile, outputFile, update, verbose } = options;
-    applyCPEMappings(inputFile, outputFile, update, verbose, appConfig)
+    const { inputFile, outputFile, update, verbose, overrideCpe } = options;
+    applyCPEMappings(inputFile, outputFile, update, verbose, overrideCpe, appConfig)
   });
 
 program.command("update")

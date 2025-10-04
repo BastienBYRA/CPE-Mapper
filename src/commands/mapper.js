@@ -10,11 +10,12 @@ import { AppConfig } from '../config.js';
  * @param {string} outputFile - Path to the output mapped BOM file.
  * @param {boolean} update - Whether to check for updates to the CPE mapping database.
  * @param {boolean} verbose - Whether to enable verbose logging.
+ * @param {boolean} overrideCpe - Whether we replace existing CPE mapping or not.
  * @param {AppConfig} appConfig - The application configuration.
  * @returns {boolean} True if mapping succeeds, false otherwise.
  * @throws {Error} If the input file is invalid or mapping fails unexpectedly.
  */
-export const applyCPEMappings = async (inputFile, outputFile, update, verbose, appConfig) => {
+export const applyCPEMappings = (inputFile, outputFile, update, verbose, overrideCpe, appConfig) => {
     if (verbose) console.log('Starting CPE mapping process...');
     if (verbose) console.log(`Input file: ${inputFile}`);
     if (verbose) console.log(`Output file: ${outputFile}`);
@@ -42,7 +43,9 @@ export const applyCPEMappings = async (inputFile, outputFile, update, verbose, a
                 if (component.version) cpeWithVersion = cpeWithVersion.replace("VERSION_COMPONENT", component.version);
                 else cpeWithVersion = cpeWithVersion.replace("VERSION_COMPONENT", "*");
 
-                component.cpe = cpeWithVersion;
+                // If the component already have a CPE, check if user specifies we can override it
+                if (!component.cpe || component.cpe && overrideCpe === true)
+                    component.cpe = cpeWithVersion;
 
                 if (verbose) console.log(`Mapped ${component.name} -> ${component.cpe}`);
             } else {
