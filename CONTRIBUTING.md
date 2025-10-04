@@ -31,16 +31,23 @@ We also try to limit external dependencies, so please add them carefully and onl
 Special note for Pull Requests that enrich the CPE database:
 
 The database follows this JSON format (example with `org.apache.tomcat.embed:tomcat-embed-core` package):
-```json
+```jsonc
+// Maven repository reference: https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core
 {
-  "name": "tomcat-embed-core",
-  "group": "org.apache.tomcat.embed",
-  "cpe": "cpe:2.3:a:apache:tomcat:VERSION_COMPONENT:*:*:*:*:*:*:*",
-  "description": "This mapping is provided because NVD attributes CVEs to apache:tomcat, not to the Java package tomcat-embed-core.",
+  "name": "tomcat-embed-core", // ArtifactID
+  "group": "org.apache.tomcat.embed", // GroupID
+
+  // Explanation of the mapping
+  "description": "NVD maps Apache Tomcat CVE to apache:tomcat, missing the package org.apache.tomcat.embed:tomcat-embed-core",
+
+  // Evidence: links justifying the mapping to the given CPE
   "evidence": [
-    { "proof": "https://nvd.nist.gov/vuln/detail/CVE-2023-1234" },
-    { "proof": "https://nvd.nist.gov/vuln/detail/CVE-2022-5678" }
-  ]
+    "https://nvd.nist.gov/vuln/detail/CVE-2023-1234",
+    "https://nvd.nist.gov/vuln/detail/CVE-2022-5678"
+  ],
+
+  // Corresponding CPE (VERSION_COMPONENT is a placeholder replaced by the program)
+  "cpe": "cpe:2.3:a:apache:tomcat:VERSION_COMPONENT:*:*:*:*:*:*:*"
 }
 ```
 | Field | Description | Can be empty |
@@ -48,29 +55,8 @@ The database follows this JSON format (example with `org.apache.tomcat.embed:tom
 | `name` | The name of the package | No |
 | `group` | The group to which the package belongs *(Java packages have a group; Node packages may not)* | Yes |
 | `cpe` | The CPE to which the package will be mapped | No |
-| `description` | A short explanation of why this mapping is done | No |
-| `evidence.proof` | Link or reference that justifies why this package is mapped to the given CPE. It should provide evidence supporting the mapping (5 proof max) | No |
-
-As an example :
-```jsonc
-// Maven repository reference: https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core
-{
-  "name": "tomcat-embed-core",
-  "group": "org.apache.tomcat.embed",
-
-  // Evidence: links justifying the mapping to the given CPE
-  "evidence": [
-    { "proof": "https://nvd.nist.gov/vuln/detail/CVE-2023-1234" },
-    { "proof": "https://nvd.nist.gov/vuln/detail/CVE-2022-5678" }
-  ],
-
-  // Explanation of the mapping
-  "description": "This mapping is provided because NVD attributes CVEs to apache:tomcat, not to the Java package org.apache.tomcat.embed:tomcat-embed-core.",
-
-  // Corresponding CPE (VERSION_COMPONENT is a placeholder replaced by the program)
-  "cpe": "cpe:2.3:a:apache:tomcat:VERSION_COMPONENT:*:*:*:*:*:*:*"
-}
-```
+| `description` | A short explanation of why this mapping exists (The description should follow this format: `NVD maps [PRODUCT] CVE to [CPE_VENDOR]:[CPE_PRODUCT], missing the package [GROUP (If there is one)]:[ARTIFACT]`) | No |
+| `evidence` | Link or reference that justifies why this package is mapped to the given CPE. It should provide evidence supporting the mapping (5 proof max) | No |
 
 Please use the `cpe-database:` prefix at the beginning of your Pull Request title.
 
