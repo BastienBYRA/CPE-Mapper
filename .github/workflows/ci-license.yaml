@@ -1,0 +1,38 @@
+name: License CI
+
+on: [push]
+  # push:
+  #   paths:
+  #     - '**.js'
+  #     - "data/cpe-mapper.json"
+  # pull_request:
+  #   paths:
+  #     - '**.js'
+  #     - "data/cpe-mapper.json"
+
+jobs:
+  run-license:
+    name: Run license check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Fix License Header
+        uses: apache/skywalking-eyes/header@v0.7.0
+        with:
+          mode: check
+          # mode: fix
+      # - name: Apply Changes
+      #   uses: EndBug/add-and-commit@v4
+      #   env:
+      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     author_name: License Bot
+      #     author_email: license_bot@github.com
+      #     message: 'Automatic application of license header'
+
+      - name: Check Dependencies' License
+        uses: apache/skywalking-eyes/dependency@v0.7.0
+        with:
+          mode: resolve
