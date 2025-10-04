@@ -31,7 +31,7 @@ import { AppConfig } from '../config.js';
  * @returns {boolean} True if mapping succeeds, false otherwise.
  * @throws {Error} If the input file is invalid or mapping fails unexpectedly.
  */
-export const applyCPEMappings = (inputFile, outputFile, update, verbose, overrideCpe, appConfig) => {
+export const applyCPEMappings = async (inputFile, outputFile, update, verbose, overrideCpe, appConfig) => {
     if (verbose) console.log('Starting CPE mapping process...');
     if (verbose) console.log(`Input file: ${inputFile}`);
     if (verbose) console.log(`Output file: ${outputFile}`);
