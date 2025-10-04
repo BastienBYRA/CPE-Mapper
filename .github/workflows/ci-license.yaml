@@ -17,15 +17,15 @@ name: License CI
 permissions:
   contents: write
 
-on: [push]
-  # push:
-  #   paths:
-  #     - '**.js'
-  #     - 'package.json'
-  # pull_request:
-  #   paths:
-  #     - '**.js'
-  #     - 'package.json'
+on:
+  push:
+    paths:
+      - '**.js'
+      - 'package.json'
+  pull_request:
+    paths:
+      - '**.js'
+      - 'package.json'
 
 jobs:
   run-license-header-check:
