@@ -49,7 +49,7 @@ The database follows this JSON format (example with `org.apache.tomcat.embed:tom
 | `group` | The group to which the package belongs *(Java packages have a group; Node packages may not)* | Yes |
 | `cpe` | The CPE to which the package will be mapped | No |
 | `description` | A short explanation of why this mapping is done | No |
-| `evidence.proof` | Link or reference that justifies why this package is mapped to the given CPE. It should provide evidence supporting the mapping | No |
+| `evidence.proof` | Link or reference that justifies why this package is mapped to the given CPE. It should provide evidence supporting the mapping (5 proof max) | No |
 
 As an example :
 ```jsonc
@@ -76,4 +76,11 @@ Please use the `cpe-database:` prefix at the beginning of your Pull Request titl
 
 Examples:
 1. Single entry: `cpe-database: add entry for org.apache.tomcat.embed:tomcat-embed-core package`
-2. Multiple entries: `cpe-database: add entries for org.apache.tomcat.embed:tomcat-embed-core, com.google.guava:guava and com.fasterxml.jackson.core:jackson-databind packages`
+2. Multiple entries:
+```
+cpe-database: add entries for 3 packages
+
+- org.apache.tomcat.embed:tomcat-embed-core
+- com.google.guava:guava
+- com.fasterxml.jackson.core:jackson-databind
+```

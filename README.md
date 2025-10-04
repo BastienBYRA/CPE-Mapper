@@ -13,6 +13,22 @@ Its main goal is to improve vulnerability identification in cases where standard
 
 ---
 
+# How does it work
+CPE-mapper is a rather simple tool.
+
+It does not analyze your source code or repository to guess which dependencies correspond to which CPEs. Instead, it relies on a [JSON mapping file (our CPE database)](./data/cpe-mapper.json) that explicitly defines, for each package name, the corresponding CPE.
+
+We use the [NVD (National Vulnerability Database)](https://nvd.nist.gov/) as a reference to determine which CPE is used for a specific piece of software, and we manually link them together.
+
+For example, NVD reports vulnerabilities for Apache Tomcat using the CPE:
+```bash
+cpe:2.3:a:apache:tomcat:*:*:*:*:*:*:*:*
+```
+
+However, this CPE cannot be directly derived from the Java package name `org.apache.tomcat.embed:tomcat-embed-core`.
+
+To solve this, CPE-mapper maintains a mapping in its database so that when it processes a BOM file, if it finds the package `org.apache.tomcat.embed:tomcat-embed-core`, it automatically adds the corresponding CPE `cpe:2.3:a:apache:tomcat:<your_package_version>:*:*:*:*:*:*:*` to the output.
+
 # Getting Started
 
 ## Installing
@@ -74,5 +90,8 @@ cpe-mapper update
 ```
 ---
 
+# Contributing
+If you would like to contribute to this project, whether by **reporting issues**, **proposing new ideas**, **developing features**, or **adding entries to the CPE database**, please see the [CONTRIBUTING](./CONTRIBUTING.md) guide for details.
+
 # Roadmap
-If you wish to contribute to this project, whether by working on new features or by adding new entries to the CPE database, please check both [CONTRIBUTING](./CONTRIBUTING.md) and [ROADMAP](./ROADMAP.md) files.
+The [ROADMAP](./ROADMAP.md) lists all the tasks planned for the future.
