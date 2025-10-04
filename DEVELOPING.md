@@ -1,6 +1,4 @@
 # Developing
-*I recommend reading the [CONTRIBUTING.md](CONTRIBUTING.md) file if you're considering contributing to this project.*
-
 ## Prerequisites
 This project tech stack is simple:
 | Tech stack | Version |
@@ -17,7 +15,7 @@ Running the project doesn't require anything specific:
 npm install
 
 # Start the project
-npm run start
+node src/cli --help
 ```
 
 ## Testing

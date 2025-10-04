@@ -1,11 +1,10 @@
 # Roadmap
+This project roadmap lists tasks and features that still need to be implemented.  
 
-This project roadmap is divided into two sections:
+It is organized into five categories:
 
-- **DONE**: Completed tasks and features.
-- **TODO**: Tasks and features that still need to be implemented.
-
-Each section is organized into the same four categories:
+### EX. Database Entries
+This section does not focus on features, but rather on a continuous task: enriching the CPE-Mapper database.
 
 ### 1. Mandatory
 The most important and critical features required to ensure the core quality and proper functioning of the application, including essential open source and administrative tasks.
@@ -23,9 +22,11 @@ Optional features or ideas that don’t provide much value but could be fun or i
 
 # TODO
 
+## Database Entries
+- Adding new entries to the [CPE database](data/cpe-mapper.json)
+
 ## Mandatory (for 1.0.0)
-- [ ] Write documentation (README.md or GitHub Wiki section)
-- [ ] Add atleast 25+ mapping to have something to work off
+- [ ] Add at least 25+ mappings to have something to work off
 
 ## High Priority
 - [ ] Improve `apply` command with `--custom-db-path` and `--custom-db-url` options, allowing users to provide a custom CPE mapping database

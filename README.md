@@ -13,47 +13,85 @@ Its main goal is to improve vulnerability identification in cases where standard
 
 ---
 
-# Installing (TODO)
-You can install it through `npm`.
+# How does it work
+CPE-mapper is a rather simple tool.
+
+It does not analyze your source code or repository to guess which dependencies correspond to which CPEs. Instead, it relies on a [JSON mapping file (our CPE database)](./data/cpe-mapper.json) that explicitly defines, for each package name, the corresponding CPE.
+
+We use the [NVD (National Vulnerability Database)](https://nvd.nist.gov/) as a reference to determine which CPE is used for a specific piece of software, and we manually link them together.
+
+For example, NVD reports vulnerabilities for Apache Tomcat using the CPE:
 ```bash
-# Not ready yet
+cpe:2.3:a:apache:tomcat:*:*:*:*:*:*:*:*
+```
+
+However, this CPE cannot be directly derived from the Java package name `org.apache.tomcat.embed:tomcat-embed-core`.
+
+To solve this, CPE-mapper maintains a mapping in its database so that when it processes a BOM file, if it finds the package `org.apache.tomcat.embed:tomcat-embed-core`, it automatically adds the corresponding CPE `cpe:2.3:a:apache:tomcat:<your_package_version>:*:*:*:*:*:*:*` to the output.
+
+# Getting Started
+
+## Installing
+You can install CPE-mapper in several ways:
+
+1. From `npm`.
+```bash
 npm install -g @bastienbyra/cpe-mapper
+
+# You can then run it using `cpe-mapper`
 ```
 
-It is also possible to use the `Docker image`.
+2. Through `Docker image`.
 ```bash
-# Not ready yet
-docker run --name cpe-mapper -v ./:/data --rm ghcr.io/bastienbyra/cpe-mapper:latest apply -i bom.json -o mapped_bom.json
+docker run -v path/to/your/bom/folder:/data --rm ghcr.io/bastienbyra/cpe-mapper:latest apply -i /data/bom.json -o /data/mapped_bom.json
 ```
 
----
+## Commands
 
-# Usage
+### Apply
 ```bash
-    ________  ____    __  ___                      
-   / ___/ _ \/ __/___/  |/  /__ ____  ___  ___ ____
-  / /__/ ___/ _//___/ /|_/ / _ `/ _ \/ _ \/ -_) __/
-  \___/_/  /___/   /_/  /_/\_,_/ .__/ .__/\__/_/   
-                              /_/  /_/             
+Usage: cpe-mapper apply [options]
 
-Usage: cpe-mapper [options] [command]
-
-CPE-mapper is a CLI tool and JSON-based database designed to accurately map software package names to their corresponding CPEs (Common Platform Enumerations).
-Its main goal is to improve vulnerability identification in cases where standard package names fail to match known CPEs.
+Apply CPE mappings to a CycloneDX BOM file
 
 Options:
-  -V, --version    output the version number
-  -h, --help       display help for command
-
-Commands:
-  apply [options]  Apply CPE mappings to a CycloneDX BOM file
-  update           Update the CPE mappings database
-  help [command]   display help for command
+  -i, --input-file <file>   Input BOM file (JSON)
+  -o, --output-file <file>  Output mapped BOM file
+  -u, --update              Update the CPE Mapping database
+  --override-cpe            Override BOM CPEs with mapped values from our database
+  -v, --verbose             Enable verbose logging
+  -h, --help                display help for command
+```
+#### Example
+Apply CPE-mapper database mappings to a BOM file
+```bash
+cpe-mapper apply -i input-bom.json -o output-bom.json
 ```
 
+Apply CPE-mapper database mappings to a BOM file, overwriting the existing CPEs in the input file.
+```bash
+cpe-mapper apply -i input-bom.json -o output-bom.json --override-cpe
+```
+
+### Update
+```bash
+Usage: cpe-mapper update [options]
+
+Update the CPE mappings database
+
+Options:
+  -h, --help  display help for command
+```
+
+#### Example
+Check if the database has updates and apply them.
+```bash
+cpe-mapper update
+```
 ---
 
-# Roadmap
-While the project is approaching its ready state, there are still some features to implement that could provide value to users.
+# Contributing
+If you would like to contribute to this project, whether by **reporting issues**, **proposing new ideas**, **developing features**, or **adding entries to the CPE database**, please see the [CONTRIBUTING](./CONTRIBUTING.md) guide for details.
 
-The ROAMDAP is available [in the ROADMAP.md file](./ROADMAP.md)
+# Roadmap
+The [ROADMAP](./ROADMAP.md) lists all the tasks planned for the future.
