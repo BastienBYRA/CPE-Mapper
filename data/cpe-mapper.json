@@ -8,7 +8,9 @@
       "cpe": "cpe:2.3:a:apache:tomcat:VERSION_COMPONENT:*:*:*:*:*:*:*",
       "description": "NVD maps Apache Tomcat CVEs to apache:tomcat, missing the package org.apache.tomcat.embed:tomcat-embed-core",
       "evidence": [
-        "https://nvd.nist.gov/vuln/detail/cve-2025-31650", "https://nvd.nist.gov/vuln/detail/CVE-2023-1234", "https://nvd.nist.gov/vuln/detail/CVE-2022-5678"
+        "https://nvd.nist.gov/vuln/detail/cve-2025-31650",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-1234",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-5678"
       ]
     },
     {
@@ -17,7 +19,9 @@
       "cpe": "cpe:2.3:a:google:guava:VERSION_COMPONENT:*:*:*:*:*:*:*",
       "description": "NVD maps Google Guava CVEs to google:guava, missing the package com.google.guava:guava",
       "evidence": [
-        "https://nvd.nist.gov/vuln/detail/cve-2023-2976", "https://nvd.nist.gov/vuln/detail/cve-2020-8908", "https://nvd.nist.gov/vuln/detail/cve-2018-10237"
+        "https://nvd.nist.gov/vuln/detail/cve-2023-2976",
+        "https://nvd.nist.gov/vuln/detail/cve-2020-8908",
+        "https://nvd.nist.gov/vuln/detail/cve-2018-10237"
       ]
     },
     {
@@ -26,7 +30,9 @@
       "cpe": "cpe:2.3:a:fasterxml:jackson-databind:VERSION_COMPONENT:*:*:*:*:*:*:*",
       "description": "NVD maps FasterXML Jackson Databind CVEs to fasterxml:jackson-databind, missing the package com.fasterxml.jackson.core:jackson-databind",
       "evidence": [
-        "https://nvd.nist.gov/vuln/detail/cve-2022-42004", "https://nvd.nist.gov/vuln/detail/cve-2021-46877", "https://nvd.nist.gov/vuln/detail/cve-2020-36187"
+        "https://nvd.nist.gov/vuln/detail/cve-2022-42004",
+        "https://nvd.nist.gov/vuln/detail/cve-2021-46877",
+        "https://nvd.nist.gov/vuln/detail/cve-2020-36187"
       ]
     },
     {
@@ -44,7 +50,8 @@
       "cpe": "cpe:2.3:a:qos:logback:VERSION_COMPONENT:*:*:*:*:*:*:*",
       "description": "NVD maps QOS Logback CVEs to qos:logback, missing the package ch.qos.logback:logback-core",
       "evidence": [
-        "https://nvd.nist.gov/vuln/detail/cve-2023-6378", "https://nvd.nist.gov/vuln/detail/cve-2017-5929"
+        "https://nvd.nist.gov/vuln/detail/cve-2023-6378",
+        "https://nvd.nist.gov/vuln/detail/cve-2017-5929"
       ]
     },
     {
@@ -62,7 +69,9 @@
       "cpe": "cpe:2.3:a:apache:commons_compress:VERSION_COMPONENT:*:*:*:*:*:*:*",
       "description": "NVD maps Apache Commons Compress to apache:commons_compress, missing the package org.apache.commons:commons-compress",
       "evidence": [
-        "https://nvd.nist.gov/vuln/detail/cve-2024-26308", "https://nvd.nist.gov/vuln/detail/cve-2024-25710", "https://nvd.nist.gov/vuln/detail/cve-2021-35517"
+        "https://nvd.nist.gov/vuln/detail/cve-2024-26308",
+        "https://nvd.nist.gov/vuln/detail/cve-2024-25710",
+        "https://nvd.nist.gov/vuln/detail/cve-2021-35517"
       ]
     },
     {
@@ -71,7 +80,9 @@
       "cpe": "cpe:2.3:a:h2database:h2:VERSION_COMPONENT:*:*:*:*:*:*:*",
       "description": "NVD maps H2 Database to h2database:h2, missing the package com.h2database:h2",
       "evidence": [
-        "https://nvd.nist.gov/vuln/detail/cve-2022-45868", "https://nvd.nist.gov/vuln/detail/CVE-2022-23221", "https://nvd.nist.gov/vuln/detail/CVE-2021-42392"
+        "https://nvd.nist.gov/vuln/detail/cve-2022-45868",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-23221",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-42392"
       ]
     },
     {
@@ -80,7 +91,8 @@
       "cpe": "cpe:2.3:a:clojure:clojure:VERSION_COMPONENT:*:*:*:*:*:*:*",
       "description": "NVD maps Clojure to clojure:clojure, missing the package org.clojure:clojure",
       "evidence": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2024-22871", "https://nvd.nist.gov/vuln/detail/CVE-2017-20189"
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-22871",
+        "https://nvd.nist.gov/vuln/detail/CVE-2017-20189"
       ]
     },
     {
@@ -89,7 +101,8 @@
       "cpe": "cpe:2.3:a:vmware:spring_framework:VERSION_COMPONENT:*:*:*:*:*:*:*",
       "description": "NVD maps Spring Core to vmware:spring_framework, missing the package org.springframework:spring-core",
       "evidence": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2024-38820", "https://nvd.nist.gov/vuln/detail/cve-2022-22968"
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-38820",
+        "https://nvd.nist.gov/vuln/detail/cve-2022-22968"
       ]
     },
     {
@@ -98,7 +111,8 @@
       "cpe": "cpe:2.3:a:vmware:spring_boot:VERSION_COMPONENT:*:*:*:*:*:*:*",
       "description": "NVD maps Spring Boot to vmware:spring_boot, missing the package org.springframework.boot:spring-boot",
       "evidence": [
-        "https://nvd.nist.gov/vuln/detail/cve-2023-34055", "https://nvd.nist.gov/vuln/detail/cve-2022-27772"
+        "https://nvd.nist.gov/vuln/detail/cve-2023-34055", 
+        "https://nvd.nist.gov/vuln/detail/cve-2022-27772"
       ]
     },
     {
@@ -107,7 +121,8 @@
       "cpe": "cpe:2.3:a:apache:httpclient:VERSION_COMPONENT:*:*:*:*:*:*:*",
       "description": "NVD maps Apache HttpClient to apache:httpclient, missing the package org.apache.httpcomponents:httpclient",
       "evidence": [
-        "https://nvd.nist.gov/vuln/detail/cve-2020-13956", "https://nvd.nist.gov/vuln/detail/CVE-2015-5262",
+        "https://nvd.nist.gov/vuln/detail/cve-2020-13956",
+        "https://nvd.nist.gov/vuln/detail/CVE-2015-5262",
         "https://nvd.nist.gov/vuln/detail/cve-2014-3577"
       ]
     },
@@ -173,7 +188,8 @@
       "cpe": "cpe:2.3:a:stleary:json-java:VERSION_COMPONENT:*:*:*:*:*:*:*",
       "description": "NVD maps JSON-Java CVEs to stleary:json-java, missing the package org.json:json",
       "evidence": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2023-5072", "https://nvd.nist.gov/vuln/detail/cve-2022-45688"
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-5072",
+        "https://nvd.nist.gov/vuln/detail/cve-2022-45688"
       ]
     },
     {

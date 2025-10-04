@@ -7,7 +7,7 @@ Its main goal is to improve vulnerability identification in cases where standard
 - 📦 Easy to install and easy to use
 - ⚡ Lightweight and fast
 - 🔒 Security-focused with evidence-backed mappings
-- 🔍 Accurate vulnerability mapping through custom CPE associations
+- 🔍 Improved vulnerability detection through custom CPE mappings
 - ✨ Compatible CycloneDX JSON from 1.2 to 1.6
 - 🧩 Roadmap includes SPDX 2.x, XML support and custom user mappings database
 
@@ -28,6 +28,24 @@ cpe:2.3:a:apache:tomcat:*:*:*:*:*:*:*:*
 However, this CPE cannot be directly derived from the Java package name `org.apache.tomcat.embed:tomcat-embed-core`.
 
 To solve this, CPE-mapper maintains a mapping in its database so that when it processes a BOM file, if it finds the package `org.apache.tomcat.embed:tomcat-embed-core`, it automatically adds the corresponding CPE `cpe:2.3:a:apache:tomcat:<your_package_version>:*:*:*:*:*:*:*` to the output.
+
+## False positives
+CPE-mapper **may report false positives**, due to how the NVD assigns CPEs to CVEs.
+
+Let’s take Log4j as an example: all CVEs related to Log4j are associated with the following CPE:
+```bash
+cpe:2.3:a:apache:log4j:<log4j_version>:*:*:*:*:*:*:*
+```
+
+This way of tagging vulnerabilities does not take into account the different modules that make up Log4j, such as `log4j-core`, `log4j-api`, `log4j-web`, or `log4j-slf4j-impl`.
+
+In other words, the NVD does not distinguish between the different packages that compose a piece of software; it treats the entire project as a single entity.
+
+As a result, we decided to associate CPEs with the **core** package of each software (e.g., `log4j-core`, `tomcat-embed-core`, `logback-core`...), since these core modules are used or implemented by all their derived packages (for example in Log4j: `log4j-api`, `log4j-web`...).
+
+This ensures that you are notified whenever a new CVE is published for the software as a whole.
+
+While this approach may generate false positives (for instance, some CVEs might affect a derived package you don’t actually use), it provides the safest coverage to ensure you don’t miss any relevant vulnerabilities.
 
 # Getting Started
 
