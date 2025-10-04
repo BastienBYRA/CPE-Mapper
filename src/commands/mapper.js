@@ -20,13 +20,13 @@ export const applyCPEMappings = (inputFile, outputFile, update, verbose, overrid
     if (verbose) console.log(`Input file: ${inputFile}`);
     if (verbose) console.log(`Output file: ${outputFile}`);
 
-    if (update) updateCPEDatabase();
+    if (update) await updateCPEDatabase(appConfig);
 
     // Load BOM
     const bom = loadBomFile(inputFile);
 
     // Load CPE Mapping database
-    const cpeDb = loadCpeMappingDatabase(appConfig.dbOsPath);
+    const cpeDb = await loadCpeMappingDatabase(appConfig);
     if (verbose) console.log('CPE database loaded successfully');
 
     // Mapping logic
@@ -78,14 +78,16 @@ const loadBomFile = (inputFile) => {
 /**
  * Loads and parses the local CPE mapping database.
  *
- * @returns {object} Parsed CPE mapping database.
+ * @param {AppConfig} appConfig - The application configuration. (Required if the CPE database does not exist)
+ * @returns {Promise<object>} Parsed CPE mapping database.
  * @throws {Error} If the mapping database does not exist or is not valid JSON.
  */
-const loadCpeMappingDatabase = (localDatabaseFilePath) => {
-    const dbPath = path.resolve(localDatabaseFilePath);
+const loadCpeMappingDatabase = async (appConfig) => {
+    const dbPath = path.resolve(appConfig.dbOsPath);
+
     if (!fs.existsSync(dbPath)) {
-        console.error(`CPE database not found at ${dbPath}`);
-        process.exit(1);
+        console.warn(`CPE database not found at ${dbPath}, it will be automatically created`);
+        await updateCPEDatabase(appConfig);
     }
     return JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 }
