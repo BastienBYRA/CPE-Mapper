@@ -3,7 +3,7 @@ CPE-mapper is a CLI tool and JSON-based database designed to accurately map soft
 
 Its main goal is to improve vulnerability identification in cases where standard package names fail to match known CPEs.
 
-# Highlights
+## Highlights
 - 📦 Easy to install and easy to use
 - ⚡ Lightweight and fast
 - 🔒 Security-focused with evidence-backed mappings
@@ -13,7 +13,7 @@ Its main goal is to improve vulnerability identification in cases where standard
 
 ---
 
-# How does it work
+## How does it work
 CPE-mapper is a rather simple tool.
 
 It does not analyze your source code or repository to guess which dependencies correspond to which CPEs. Instead, it relies on a [JSON mapping file (our CPE database)](./data/cpe-mapper.json) that explicitly defines, for each package name, the corresponding CPE.
@@ -29,7 +29,7 @@ However, this CPE cannot be directly derived from the Java package name `org.apa
 
 To solve this, CPE-mapper maintains a mapping in its database so that when it processes a BOM file, if it finds the package `org.apache.tomcat.embed:tomcat-embed-core`, it automatically adds the corresponding CPE `cpe:2.3:a:apache:tomcat:<your_package_version>:*:*:*:*:*:*:*` to the output.
 
-## False positives
+### False positives
 CPE-mapper **may report false positives**, due to how the NVD assigns CPEs to CVEs.
 
 Let’s take Log4j as an example: all CVEs related to Log4j are associated with the following CPE:
@@ -47,9 +47,9 @@ This ensures that you are notified whenever a new CVE is published for the softw
 
 While this approach may generate false positives (for instance, some CVEs might affect a derived package you don’t actually use), it provides the safest coverage to ensure you don’t miss any relevant vulnerabilities.
 
-# Getting Started
+## Getting Started
 
-## Installing
+### Installing
 You can install CPE-mapper in several ways:
 
 1. From `npm`.
@@ -64,9 +64,9 @@ npm install -g @bastienbyra/cpe-mapper
 docker run -v path/to/your/bom/folder:/data --rm ghcr.io/bastienbyra/cpe-mapper:latest apply -i /data/bom.json -o /data/mapped_bom.json
 ```
 
-## Commands
+### Commands
 
-### Apply
+#### Apply
 ```bash
 Usage: cpe-mapper apply [options]
 
@@ -80,7 +80,7 @@ Options:
   -v, --verbose             Enable verbose logging
   -h, --help                display help for command
 ```
-#### Example
+##### Example
 Apply CPE-mapper database mappings to a BOM file
 ```bash
 cpe-mapper apply -i input-bom.json -o output-bom.json
@@ -91,7 +91,7 @@ Apply CPE-mapper database mappings to a BOM file, overwriting the existing CPEs 
 cpe-mapper apply -i input-bom.json -o output-bom.json --override-cpe
 ```
 
-### Update
+#### Update
 ```bash
 Usage: cpe-mapper update [options]
 
@@ -101,15 +101,15 @@ Options:
   -h, --help  display help for command
 ```
 
-#### Example
+##### Example
 Check if the database has updates and apply them.
 ```bash
 cpe-mapper update
 ```
 ---
 
-# Contributing
+## Contributing
 If you would like to contribute to this project, whether by **reporting issues**, **proposing new ideas**, **developing features**, or **adding entries to the CPE database**, please see the [CONTRIBUTING](./CONTRIBUTING.md) guide for details.
 
-# Roadmap
+## Roadmap
 The [ROADMAP](./ROADMAP.md) lists all the tasks planned for the future.
