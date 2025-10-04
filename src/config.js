@@ -1,4 +1,22 @@
+/**
+ * Copyright 2025 Bastien BYRA
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { isBoolean, isFilePath, isURL } from "./utils.js"
+import envPaths from 'env-paths';
+import path from "node:path";
 
 /**
  * @typedef {Object} AppConfig
@@ -56,11 +74,13 @@ export const setupAppConfig = () => {
 }
 
 const configureAppConfig = (customDbEnabled, customDbOsPath, customDbURL, customDbSaveFilePath) => {
+    const osSpecificPaths = envPaths('cpe-mapper');
+
     const APP_CONFIG = {
         "dbURL": "https://raw.githubusercontent.com/BastienBYRA/CPE-Mapper/refs/heads/main/data/cpe-mapper.json",
         
-        // Should be customizable
-        "dbOsPath": "data/cpe-mapper.json",
+        // Should be customizable in the future
+        "dbOsPath": path.resolve(osSpecificPaths.data + "data/cpe-mapper.json"),
         
         // NOT IMPLEMENTED YET
         // For later use

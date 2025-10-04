@@ -26,11 +26,7 @@ Optional features or ideas that don’t provide much value but could be fun or i
 - Adding new entries to the [CPE database](data/cpe-mapper.json)
 
 ## Mandatory (for 1.0.0)
-- [ ] Create CI/CD pipelines for both the NPM package and Docker build
-- [ ] Write documentation (README.md or GitHub Wiki section)
-- [ ] Add license header to each file with author information
 - [ ] Add at least 25+ mappings to have something to work off
-- [ ] Add the flag `--override-cpe` on the `apply` command: tell the program that it can override the CPE from the given SBOM file
 
 ## High Priority
 - [ ] Improve `apply` command with `--custom-db-path` and `--custom-db-url` options, allowing users to provide a custom CPE mapping database
