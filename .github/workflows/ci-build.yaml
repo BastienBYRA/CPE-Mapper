@@ -28,7 +28,27 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          push: false
+          push: true
           tags: |
             ghcr.io/bastienbyra/cpe-mapper:${{ env.IMAGE_VERSION }}
             ghcr.io/bastienbyra/cpe-mapper:latest
+  
+  npm-publish:
+    name: NPM publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: NPM publish
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

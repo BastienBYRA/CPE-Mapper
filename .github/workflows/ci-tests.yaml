@@ -33,21 +33,50 @@ jobs:
 
       - name: Run unit test
         run: npm run test
+
+      # Build a package of the application we can pass to other jobs
+      - name: Build package
+        run: npm pack
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cpe-mapper-package
+          path: bastienbyra-cpe-mapper-*.tgz
     
   # Ensure the image can be build
   test-build:
-    name: Docker Build Test
+    name: Docker Build test
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         
-      - name: Build
+      - name: Test Docker build
         uses: docker/build-push-action@v6
         with:
           push: false
           tags: |
             ghcr.io/bastienbyra/cpe-mapper:${{ env.IMAGE_VERSION }}
+
+  test-npm-publish:
+    name: NPM publish test
+    runs-on: ubuntu-latest
+    needs: run-tests
+    steps:
+      - name: Download package artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: cpe-mapper-package
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Test publish
+        run: npm publish --dry-run *.tgz

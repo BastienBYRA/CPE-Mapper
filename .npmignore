@@ -1,0 +1,16 @@
+data/
+node_modules/
+testdata/
+tests/
+bin/
+.github/
+__tests/
+.git/
+
+package-lock.json
+Dockerfile
+.dockerignore
+.gitignore
+*.md
+!README.md
+!LICENSE
