@@ -25,7 +25,6 @@ Optional features or ideas that don’t provide much value but could be fun or i
 
 ## Mandatory (for 1.0.0)
 - [ ] Write documentation (README.md or GitHub Wiki section)
-- [ ] Add license header to each file with author information
 - [ ] Add atleast 25+ mapping to have something to work off
 
 ## High Priority
