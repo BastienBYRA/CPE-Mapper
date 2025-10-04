@@ -1,4 +1,6 @@
 {
+  "__license": "Apache-2.0",
+  "__author": "Bastien BYRA",
   "packages": [
     {
       "name": "tomcat-embed-core",

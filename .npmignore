@@ -2,7 +2,7 @@ data/
 node_modules/
 testdata/
 tests/
-bin/
+scripts/
 .github/
 __tests/
 .git/
@@ -14,3 +14,4 @@ Dockerfile
 *.md
 !README.md
 !LICENSE
+!NOTICE

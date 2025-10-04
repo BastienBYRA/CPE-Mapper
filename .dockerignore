@@ -1,8 +1,14 @@
-.github/
-testdata/
 data/
-tests/
 node_modules/
+testdata/
+tests/
+scripts/
+.github/
+__tests/
+.git/
+
 .gitignore
 *.md
 !README.md
+!LICENSE
+!NOTICE
