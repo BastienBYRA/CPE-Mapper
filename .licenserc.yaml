@@ -34,7 +34,6 @@ header:
       limitations under the License.
 
   paths-ignore:
-    - '.github/'
     - 'scripts/'
     - 'node_modules/'
     - 'testdata/'
