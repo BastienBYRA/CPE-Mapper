@@ -4,3 +4,4 @@ node_modules/
 # Testing
 testdata/
 !testdata/bom.test.json
+megalinter-reports/
