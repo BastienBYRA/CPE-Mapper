@@ -204,6 +204,94 @@
         "https://nvd.nist.gov/vuln/detail/CVE-2022-3510",
         "https://nvd.nist.gov/vuln/detail/CVE-2021-22569"
       ]
+    },
+    {
+      "name": "commons-beanutils",
+      "group": "commons-beanutils",
+      "cpe": "cpe:2.3:a:apache:commons_beanutils:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Commons BeanUtils CVEs to apache:commons_beanutils, missing the package commons-beanutils:commons-beanutils",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-48734",
+        "https://nvd.nist.gov/vuln/detail/CVE-2019-10086",
+        "https://nvd.nist.gov/vuln/detail/CVE-2014-0114"
+      ]
+    },
+    {
+      "name": "retrofit",
+      "group": "com.squareup.retrofit2",
+      "cpe": "cpe:2.3:a:squareup:retrofit:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Retrofit CVEs to squareup:retrofit, missing the package com.squareup.retrofit2:retrofit",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-1000850",
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-1000844"
+      ]
+    },
+    {
+      "name": "postgresql",
+      "group": "org.postgresql",
+      "cpe": "cpe:2.3:a:postgresql:postgresql_jdbc_driver:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps PostgreSQL JDBC Driver CVEs to postgresql:postgresql_jdbc_driver, missing the package org.postgresql:postgresql",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/cve-2024-1597",
+        "https://nvd.nist.gov/vuln/detail/cve-2022-41946",
+        "https://nvd.nist.gov/vuln/detail/cve-2022-31197",
+        "https://nvd.nist.gov/vuln/detail/cve-2022-21724",
+        "https://nvd.nist.gov/vuln/detail/cve-2022-26520"
+      ]
+    },
+    {
+      "name": "snakeyaml",
+      "group": "org.yaml",
+      "cpe": "cpe:2.3:a:snakeyaml_project:snakeyaml:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps SnakeYAML CVEs to snakeyaml_project:snakeyaml, missing the package org.yaml:snakeyaml",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-1471",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-25857",
+        "https://nvd.nist.gov/vuln/detail/cve-2022-41854",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-38752",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-38751"
+      ]
+    },
+    {
+      "name": "maven-core",
+      "group": "org.apache.maven",
+      "cpe": "cpe:2.3:a:apache:maven:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Maven 4 Core CVEs to apache:maven, missing the package org.apache.maven:maven-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/cve-2021-26291"
+      ]
+    },
+    {
+      "name": "jsoup",
+      "group": "org.jsoup",
+      "cpe": "cpe:2.3:a:jsoup:jsoup:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Jsoup Java HTML Parser CVEs to jsoup:jsoup, missing the package org.jsoup:jsoup",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-37714",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-36033"
+      ]
+    },
+    {
+      "name": "jetty-server",
+      "group": "org.eclipse.jetty",
+      "cpe": "cpe:2.3:a:eclipse:jetty:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Eclipse Jetty CVEs to eclipse:jetty, missing the package org.eclipse.jetty:jetty-server",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-22201",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-6763",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-1948",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-8184",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-27223"
+      ]
+    },
+    {
+      "name": "commons-text",
+      "group": "org.apache.commons",
+      "cpe": "cpe:2.3:a:apache:commons_text:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Commons Text CVEs to apache:commons_text, missing the package org.apache.commons:commons-text",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-42889"
+      ]
     }
   ]
 }
