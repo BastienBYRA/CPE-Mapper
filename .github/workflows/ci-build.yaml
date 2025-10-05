@@ -19,8 +19,8 @@ on:
     tags:
       - "*"
 
-env:
-  IMAGE_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
+permissions:
+  id-token: write
 
 jobs:
   build-image:
@@ -44,7 +44,7 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/bastienbyra/cpe-mapper:${{ env.IMAGE_VERSION }}
+            ghcr.io/bastienbyra/cpe-mapper:${{ github.ref_name }}
             ghcr.io/bastienbyra/cpe-mapper:latest
   
   npm-publish:
@@ -63,6 +63,6 @@ jobs:
         run: npm ci
 
       - name: NPM publish
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

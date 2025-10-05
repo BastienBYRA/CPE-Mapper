@@ -26,9 +26,6 @@ on:
       - 'package.json'
       - 'package-lock.json'
 
-env:
-  IMAGE_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
-
 jobs:
   run-tests:
     name: Run tests
@@ -75,7 +72,7 @@ jobs:
         with:
           push: false
           tags: |
-            ghcr.io/bastienbyra/cpe-mapper:${{ env.IMAGE_VERSION }}
+            ghcr.io/bastienbyra/cpe-mapper:${{ github.sha }}
 
   test-npm-publish:
     name: NPM publish test
