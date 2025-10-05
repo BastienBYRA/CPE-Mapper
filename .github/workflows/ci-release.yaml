@@ -14,11 +14,10 @@
 
 name: Release CI
 
-# on:
-#   push:
-#     tags:
-#       - "*"
-on: [push]
+on:
+  push:
+    tags:
+      - "*"
 
 permissions:
   contents: write
@@ -36,8 +35,8 @@ jobs:
             Check out the new features and changes in [CHANGELOG.md](https://github.com/BastienBYRA/CPE-Mapper/blob/main/CHANGELOG.md) for version v${{ github.ref_name }}
 
             You can install it throught:
-            1. NPM: npm install -g @bastienbyra/cpe-mapper@{{ github.ref_name }}
-            2. Docker: docker pull ghcr.io/bastienbyra/cpe-mapper:{{ github.ref_name }}
+            1. NPM: npm install -g @bastienbyra/cpe-mapper@${{ github.ref_name }}
+            2. Docker: docker pull ghcr.io/bastienbyra/cpe-mapper:${{ github.ref_name }}
           draft: false
           prerelease: false
         env:
