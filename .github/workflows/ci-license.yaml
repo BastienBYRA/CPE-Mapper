@@ -22,6 +22,8 @@ on:
     # Only run on branches; tags are derived from a branch, redundant
     tags-ignore:
       - '**'
+    branches: 
+      - '**'
     paths:
       - '**.js'
       - 'package.json'
