@@ -1,3 +1,10 @@
+### Authorize ###
+!README.md
+!LICENSE
+!NOTICE
+
+### Unauthorize ###
+# Folder
 data/
 node_modules/
 testdata/
@@ -7,8 +14,9 @@ scripts/
 __tests/
 .git/
 
+# Ignore files
 .gitignore
+
+# Files types
 *.md
-!README.md
-!LICENSE
-!NOTICE
+*.yaml

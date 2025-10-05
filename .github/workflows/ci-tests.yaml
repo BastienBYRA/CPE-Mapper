@@ -16,18 +16,20 @@ name: Tests CI
 
 on:
   push:
+    # Only run on branches; tags are derived from a branch, redundant
+    tags-ignore:
+      - '**'
     paths:
       - '**.js'
       - 'package.json'
       - 'package-lock.json'
   pull_request:
+    branches:
+      - '**'
     paths:
       - '**.js'
       - 'package.json'
       - 'package-lock.json'
-
-env:
-  IMAGE_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
 
 jobs:
   run-tests:
@@ -75,7 +77,7 @@ jobs:
         with:
           push: false
           tags: |
-            ghcr.io/bastienbyra/cpe-mapper:${{ env.IMAGE_VERSION }}
+            ghcr.io/bastienbyra/cpe-mapper:${{ github.sha }}
 
   test-npm-publish:
     name: NPM publish test

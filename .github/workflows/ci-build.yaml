@@ -19,12 +19,17 @@ on:
     tags:
       - "*"
 
-env:
-  IMAGE_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || github.sha }}
+permissions:
+  id-token: write
+  contents: read
+  packages: write
 
 jobs:
   build-image:
+    name: Docker Build and Push to GHCR.io
     runs-on: ubuntu-latest
+    environment: production
+    if: github.repository == 'BastienBYRA/CPE-Mapper'
     steps:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -44,12 +49,14 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/bastienbyra/cpe-mapper:${{ env.IMAGE_VERSION }}
+            ghcr.io/bastienbyra/cpe-mapper:${{ github.ref_name }}
             ghcr.io/bastienbyra/cpe-mapper:latest
-  
+
   npm-publish:
     name: NPM publish
     runs-on: ubuntu-latest
+    environment: production
+    if: github.repository == 'BastienBYRA/CPE-Mapper'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -58,11 +65,13 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+          always-auth: 'true'
 
       - name: Install dependencies
         run: npm ci
 
       - name: NPM publish
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
