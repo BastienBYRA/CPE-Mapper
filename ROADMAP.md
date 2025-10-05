@@ -23,20 +23,27 @@ Optional features or ideas that don’t provide much value but could be fun or i
 # TODO
 
 ## Database Entries
-- Adding new entries to the [CPE database](data/cpe-mapper.json)
+- Add new entries to the [CPE database](data/cpe-mapper.json)
 
-## Mandatory (for 1.0.0)
-- [ ] Add at least 25+ mappings to have something to work off
+## Mandatory (for 1.1.0)
+- [] Add a `config` command. Through environment variables or a configuration file, users should be able to define:
+  - `custom-db-path`
+  - `custom-db-url`
+  - `custom-db-save-file-path`
+  - [] Add a `check` subcommand to verify that the provided values are valid.
+- [ ] Improve the `apply` command with the `--custom-db-path` and `--custom-db-url` options, allowing users to provide a custom CPE mapping database.
+  - [] Add a `--disable-default-db` option to disable the default CPE mapping database.
+- [ ] Add support for SPDX 2.x JSON format.
 
 ## High Priority
-- [ ] Improve `apply` command with `--custom-db-path` and `--custom-db-url` options, allowing users to provide a custom CPE mapping database
-- [ ] Add support for SPDX 2.x JSON format
-- [ ] Add integration tests (likely without extra dependencies, by running the CLI in a dev environment such as a Docker container)
+- [ ] Add integration tests (preferably without extra dependencies, by running the CLI in a development environment such as a Docker container).
 
 ## Low Priority
-- [ ] Command `search`: Search if a package already has a mapping in the database using `--groupname`, `--name`, or `--fullname`
-- [ ] Add support for XML files (will probably require a dependency)
+- [ ] `search` command: Search if a package already has a mapping in the database using `--groupname`, `--name`, or `--fullname`.
+- [ ] Add support for XML files (may require an additional dependency).
+- [] Add a `server` command and mode, allowing users to deploy CPE-Mapper as a server capable of consuming BOM files through a web API.
+- [] Add a mechanism for users to specify which mappings from the CPE database should be ignored.
 
 ## Bonus
-- [ ] Command `compliance` with the following subcommands:
-  - [ ] `sbom`: Get the SBOM for the current version of the CLI
+- [ ] `compliance` command with the following subcommands:
+  - [ ] `sbom`: Generate the SBOM for the current version of the CLI.
