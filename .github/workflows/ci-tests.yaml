@@ -16,11 +16,16 @@ name: Tests CI
 
 on:
   push:
+    # Only run on branches; tags are derived from a branch, redundant
+    tags-ignore:
+      - '**'
     paths:
       - '**.js'
       - 'package.json'
       - 'package-lock.json'
   pull_request:
+    branches:
+      - '**'
     paths:
       - '**.js'
       - 'package.json'
