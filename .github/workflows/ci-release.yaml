@@ -33,7 +33,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
           name: Release v${{ github.ref_name }}
           body: |
             Check out the new features and changes in [CHANGELOG.md](https://github.com/BastienBYRA/CPE-Mapper/blob/main/CHANGELOG.md) for version v${{ github.ref_name }}
