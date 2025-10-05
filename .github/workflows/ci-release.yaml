@@ -20,6 +20,9 @@ name: Release CI
 #       - "*"
 on: [push]
 
+permissions:
+  contents: write
+
 jobs:
   build-image:
     runs-on: ubuntu-latest
