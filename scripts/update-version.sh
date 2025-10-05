@@ -13,13 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if [ -z "$NEW_RELEASE_VERSION" ] || [ "$NEW_RELEASE_VERSION" = "TO_DEFINE" ]; then
-    echo "Please set the NEW_RELEASE_VERSION with the new release value before running this script."
+NEW_RELEASE_VERSION="$1"
+
+if [ -z "$NEW_RELEASE_VERSION" ]; then
+    echo "Usage: $0 <new_release_version>"
     exit 1
 fi
 
-sed -i "s/version('0.1.0')/version('$NEW_RELEASE_VERSION')/g" src/cli.js
-sed -i "s/0.1.0/$NEW_RELEASE_VERSION/g" Dockerfile
-sed -i "s/\"version\": \".*\"/\"version\": \"$NEW_RELEASE_VERSION\"/" package.json
-# To update the application version
+sed -E -i "s/version\('[0-9]+\.[0-9]+\.[0-9]+'\)/version('$NEW_RELEASE_VERSION')/g" src/cli.js
+sed -E -i "s/[0-9]+\.[0-9]+\.[0-9]+/$NEW_RELEASE_VERSION/g" Dockerfile
+sed -E -i "s/\"version\": \"[0-9]+\.[0-9]+\.[0-9]+\"/\"version\": \"$NEW_RELEASE_VERSION\"/" package.json
+
+# To update the package-lock.json
 npm install
