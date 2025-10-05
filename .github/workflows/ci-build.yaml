@@ -21,10 +21,13 @@ on:
 
 permissions:
   id-token: write
+  contents: read
+  packages: write
 
 jobs:
   build-image:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -46,10 +49,11 @@ jobs:
           tags: |
             ghcr.io/bastienbyra/cpe-mapper:${{ github.ref_name }}
             ghcr.io/bastienbyra/cpe-mapper:latest
-  
+
   npm-publish:
     name: NPM publish
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
