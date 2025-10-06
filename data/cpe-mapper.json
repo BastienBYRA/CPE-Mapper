@@ -521,6 +521,68 @@
         "https://nvd.nist.gov/vuln/detail/CVE-2021-46089",
         "https://nvd.nist.gov/vuln/detail/CVE-2021-44585"
       ]
+    },
+    {
+      "name": "hippo4j-core",
+      "group": "cn.hippo4j",
+      "cpe": "cpe:2.3:a:opengoofy:hippo4j:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Hippo4j CVEs to opengoofy:hippo4j, missing the package cn.hippo4j:hippo4j-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-27095"
+      ]
+    },
+    {
+      "name": "tika-core",
+      "group": "org.apache.tika",
+      "cpe": "cpe:2.3:a:apache:tika:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Tika CVEs to apache:tika, missing the package org.apache.tika:tika-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-54988",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-30126",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-25169",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-1950",
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-1335"
+      ]
+    },
+    {
+      "name": "eventmesh-common",
+      "group": "org.apache.eventmesh",
+      "cpe": "cpe:2.3:a:apache:eventmesh:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache EventMesh CVEs to apache:eventmesh, missing the package org.apache.eventmesh:eventmesh-common",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-39954",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-56180"
+      ]
+    },
+    {
+      "name": "eventmesh-connector-rabbitmq",
+      "group": "org.apache.eventmesh",
+      "cpe": "cpe:2.3:a:apache:eventmesh-connector-rabbitmq:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache EventMesh RabbitMQ Connector CVEs to apache:eventmesh-connector-rabbitmq, missing the package org.apache.eventmesh:eventmesh-connector-rabbitmq",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-26512"
+      ]
+    },
+    {
+      "name": "grpc-netty-shaded",
+      "group": "io.grpc",
+      "cpe": "cpe:2.3:a:grpc:grpc:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps gRPC Netty Shaded CVE to netty:netty, missing the package io.grpc:grpc-netty-shaded",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-55163"
+      ]
+    },
+    {
+      "name": "grpc-core",
+      "group": "io.grpc",
+      "cpe": "cpe:2.3:a:grpc:grpc:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps gRPC CVE to grpc:grpc, missing the package io.grpc:grpc-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-11407",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-7246",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-32731",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-32732"
+      ]
     }
   ]
 }
