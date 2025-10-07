@@ -18,6 +18,8 @@ import fs from 'fs';
 import path from 'path';
 import { updateCPEDatabase } from './update.js';
 import { AppConfig } from '../config.js';
+import { BOMFormats, guessBOMFormat } from '../utils/utils-bom.js';
+import { ParserManager } from '../parsers/manager.js';
 
 /**
  * Maps a BOM file to its corresponding CPE format.
@@ -39,39 +41,37 @@ export const applyCPEMappings = async (inputFile, outputFile, update, verbose, o
     if (update) await updateCPEDatabase(appConfig);
 
     // Load BOM
-    const bom = loadBomFile(inputFile);
+    const bomContent = loadBomFile(inputFile);
 
     // Load CPE Mapping database
-    const cpeDb = await loadCpeMappingDatabase(appConfig);
+    const cpeDbContent = await loadCpeMappingDatabase(appConfig);
     if (verbose) console.log('CPE database loaded successfully');
 
-    // Mapping logic
-    if (!bom.components) {
-        console.warn('No components found in BOM');
-    } else {
-        bom.components.forEach(component => {
-            const componentFullName = getComponentFullName(component.group, component.name);
-            let cpeDbPkg = searchCpeMapping(componentFullName, cpeDb);
-
-            if (cpeDbPkg) {
-                // Replace placeholder with component version if available
-                let cpeWithVersion = cpeDbPkg.cpe;
-                if (component.version) cpeWithVersion = cpeWithVersion.replace("VERSION_COMPONENT", component.version);
-                else cpeWithVersion = cpeWithVersion.replace("VERSION_COMPONENT", "*");
-
-                // If the component already have a CPE, check if user specifies we can override it
-                if (!component.cpe || component.cpe && overrideCpe === true)
-                    component.cpe = cpeWithVersion;
-
-                if (verbose) console.log(`Mapped ${component.name} -> ${component.cpe}`);
-            } else {
-                if (verbose) console.log(`No mapping found for ${component.name}`);
-            }
-        });
+    // Guess the BOM format (TODO: Add a `--bom-format` flag once SPDX format is good to go)
+    const bomFormat = guessBOMFormat(bomContent)
+    if (bomFormat == BOMFormats.NotFound) {
+        console.error("Unable to identify the BOM file format")
+        process.exit(1)
+    }
+    
+    // Identifies the parsers needed to map the BOM
+    const listRequiredParsers = new ParserManager().getRequiredParsers(bomFormat, bomContent)
+    if (listRequiredParsers.length === 0) {
+        console.error("No known ecosystems found in BOM");
+        process.exit(1);
     }
 
+    // Read the BOM file and applies the CPE database mapping
+    listRequiredParsers.forEach(parser => {
+        if (bomFormat == BOMFormats.CycloneDX)
+            parser.parseCycloneDX(cpeDbContent, bomContent, overrideCpe, verbose)
+        else
+            // TODO: Not yet implemented
+            parser.parseSPDX()
+    });
+
     // Save mapped BOM
-    generateMappedFile(outputFile, verbose, bom);
+    generateMappedFile(outputFile, verbose, bomContent);
     console.info("BOM mapping has successfully finished");
     return true;
 }
@@ -144,23 +144,7 @@ const generateMappedFile = (outputFile, verbose, bom) => {
     if (verbose) console.log(`Mapped BOM saved to ${outputFile}`);
 }
 
-/**
- * Searches the CPE mapping database for a component by full name.
- *
- * @param {string} componentFullName - Normalized component identifier ("group:name" or "name").
- * @param {object} cpeDb - The CPE database.
- * @returns {object|undefined} The matching CPE package mapping, or undefined if none found.
- */
-const searchCpeMapping = (componentFullName, cpeDb) => {
-    return cpeDb.packages.find(cpeDbPkg => {
-        let cpeDbPkgFullName;
 
-        if (componentFullName.search(":") === -1) cpeDbPkgFullName = `${cpeDbPkg.name}`;
-        else cpeDbPkgFullName = `${cpeDbPkg.group}:${cpeDbPkg.name}`;
-        
-        if (cpeDbPkgFullName === componentFullName) return cpeDbPkg;
-    });
-};
 
 /**
  * !!! To succesfully run, NODE_ENV must be "test"

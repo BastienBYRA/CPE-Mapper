@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { isBoolean, isFilePath, isURL } from "./utils.js"
+import { isBoolean, isFilePath, isURL } from "./utils/utils.js"
 import envPaths from 'env-paths';
 import path from "node:path";
 
