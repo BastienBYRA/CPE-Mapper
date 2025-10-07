@@ -635,6 +635,24 @@
         ]
       }
     ]
+  },
+  "npm": {
+    "packages": []
+  },
+  "pypi": {
+    "packages": []
+  },
+  "nuget": {
+    "packages": []
+  },
+  "cargo": {
+    "packages": []
+  },
+  "apt": {
+    "packages": []
+  },
+  "apk": {
+    "packages": []
   }
 }
 
