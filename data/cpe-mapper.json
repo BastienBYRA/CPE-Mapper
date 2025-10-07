@@ -340,18 +340,6 @@
       ]
     },
     {
-      "name": "hutool-core",
-      "group": "cn.hutool",
-      "cpe": "cpe:2.3:a:hutool:hutool:VERSION_COMPONENT:*:*:*:*:*:*:*",
-      "description": "NVD maps Hutool CVE to hutool:hutool, missing the package cn.hutool:hutool-core",
-      "evidence": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2023-51075",
-        "https://nvd.nist.gov/vuln/detail/CVE-2023-42278",
-        "https://nvd.nist.gov/vuln/detail/CVE-2023-42277",
-        "https://nvd.nist.gov/vuln/detail/CVE-2023-42276"
-      ]
-    },
-    {
       "name": "zookeeper",
       "group": "org.apache.zookeeper",
       "cpe": "cpe:2.3:a:apache:zookeeper:VERSION_COMPONENT:*:*:*:*:*:*:*",
