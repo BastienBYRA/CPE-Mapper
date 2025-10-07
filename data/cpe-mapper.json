@@ -292,6 +292,346 @@
       "evidence": [
         "https://nvd.nist.gov/vuln/detail/CVE-2022-42889"
       ]
+    },
+    {
+    "name": "kylin-core-common",
+    "group": "org.apache.kylin",
+    "cpe": "cpe:2.3:a:apache:kylin:VERSION_COMPONENT:*:*:*:*:*:*:*",
+    "description": "NVD maps Apache Kylin CVE to apache:kylin, missing the package org.apache.kylin:kylin-core-common",
+    "evidence": [
+      "",
+      "https://nvd.nist.gov/vuln/detail/CVE-2025-61733",
+      "https://nvd.nist.gov/vuln/detail/CVE-2025-61734",
+      "https://nvd.nist.gov/vuln/detail/CVE-2025-61735",
+      "https://nvd.nist.gov/vuln/detail/CVE-2023-29055",
+      "https://nvd.nist.gov/vuln/detail/CVE-2022-24697"
+    ]
+  },
+  {
+      "name": "fs2-io_2.11",
+      "group": "co.fs2",
+      "cpe": "cpe:2.3:a:typelevel:fs2:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD / advisories map fs2 CVEs to typelevel:fs2, missing the package co.fs2:fs2-io_2.11",
+      "evidence": [
+        "",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-31183"
+      ]
+    },
+    {
+      "name": "com.liferay.portal.kernel",
+      "group": "com.liferay.portal",
+      "cpe": "cpe:2.3:a:liferay:liferay_portal:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Liferay Portal CVE to liferay:liferay_portal, missing the package com.liferay.portal:com.liferay.portal.kernel",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-26266",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-11993"
+      ]
+    },
+    {
+      "name": "hutool-core",
+      "group": "cn.hutool",
+      "cpe": "cpe:2.3:a:hutool:hutool:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Hutool CVE to hutool:hutool, missing the package cn.hutool:hutool-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-51075",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-42278",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-42277",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-42276"
+      ]
+    },
+    {
+      "name": "zookeeper",
+      "group": "org.apache.zookeeper",
+      "cpe": "cpe:2.3:a:apache:zookeeper:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache ZooKeeper CVE to apache:zookeeper, missing the package org.apache.zookeeper:zookeeper",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-58457",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-51504",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-23944",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-44981",
+        "https://nvd.nist.gov/vuln/detail/CVE-2019-0201"
+      ]
+    },
+    {
+      "name": "iotdb-core",
+      "group": "org.apache.iotdb",
+      "cpe": "cpe:2.3:a:apache:iotdb:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache IoTDB CVE to apache:iotdb, missing the package org.apache.iotdb:iotdb-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-48392",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-26864",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-48459",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-24780"
+      ]
+    },
+    {
+      "name": "h2o-core",
+      "group": "ai.h2o",
+      "cpe": "cpe:2.3:a:h2o:h2o:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD/GHSA maps H2O CVE to h2o:h2o, missing the package ai.h2o:h2o-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-6960",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-45758",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-8616",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-10550",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-6854"
+      ]
+    },
+    {
+      "name": "jinjava",
+      "group": "com.hubspot.jinjava",
+      "cpe": "cpe:2.3:a:hubspot:jinjava:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps HubSpot Jinjava CVE to hubspot:jinjava, missing the package com.hubspot.jinjava:jinjava",
+      "evidence": [
+      "https://nvd.nist.gov/vuln/detail/CVE-2025-59340",
+      "https://nvd.nist.gov/vuln/detail/CVE-2020-12668",
+      "https://nvd.nist.gov/vuln/detail/CVE-2018-18893"
+      ]
+    },
+    {
+      "name": "jenkins-core",
+      "group": "org.jenkins-ci.main",
+      "cpe": "cpe:2.3:a:jenkins:jenkins:VERSION_COMPONENT:*:*:*:-:*:*:*",
+      "description": "NVD maps Jenkins CVEs to jenkins:jenkins, missing the package org.jenkins-ci.main:jenkins-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-59474",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-59475",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-59476",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-27622",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-27623"
+      ]
+    },
+    {
+      "name": "xmppserver",
+      "group": "org.igniterealtime.openfire",
+      "cpe": "cpe:2.3:a:igniterealtime:openfire:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Ignite Realtime Openfire CVEs to igniterealtime:openfire, missing the package org.igniterealtime.openfire:xmppserver",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-25420",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-25421",
+        "https://nvd.nist.gov/vuln/detail/CVE-2014-3451"
+      ]
+    },
+    {
+      "name": "fory-core",
+      "group": "org.apache.fory",
+      "cpe": "cpe:2.3:a:apache:fory:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Fory CVEs to apache:fory, missing the package org.apache.fory:fory-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-59328"
+      ]
+    },
+    {
+      "name": "dolphinscheduler-common",
+      "group": "org.apache.dolphinscheduler",
+      "cpe": "cpe:2.3:a:apache:dolphinscheduler:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache DolphinScheduler CVEs to apache:dolphinscheduler, missing the package org.apache.dolphinscheduler:dolphinscheduler-common",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-49620",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-26885"
+      ]
+    },
+    {
+      "name": "jackrabbit-core",
+      "group": "org.apache.jackrabbit",
+      "cpe": "cpe:2.3:a:apache:jackrabbit:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Jackrabbit CVEs to apache:jackrabbit, missing the package org.apache.jackrabbit:jackrabbit-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-58782",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-53689",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-21295"
+      ]
+    },
+    {
+      "name": "netty-common",
+      "group": "io.netty",
+      "cpe": "cpe:2.3:a:netty:netty:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Netty CVEs to netty:netty, missing the package io.netty:netty-common",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-55163",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-25193",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-47535"
+      ]
+    },
+    {
+      "name": "vaadin-core",
+      "group": "com.vaadin",
+      "cpe": "cpe:2.3:a:vaadin:vaadin:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Vaadin CVEs to vaadin:vaadin, missing the package com.vaadin:vaadin-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-25499",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-25500",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-29567",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-31403"
+      ]
+    },
+    {
+      "name": "opentelemetry",
+      "group": "io.jenkins.plugins",
+      "cpe": "cpe:2.3:a:jenkins:opentelemetry:VERSION_COMPONENT:*:*:*:*:jenkins:*:*",
+      "description": "NVD maps Jenkins OpenTelemetry Plugin CVE to jenkins:opentelemetry, missing the package io.jenkins.plugins:opentelemetry",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-58460"
+      ]
+    },
+    {
+      "name": "silverpeas-core",
+      "group": "org.silverpeas.core",
+      "cpe": "cpe:2.3:a:silverpeas:silverpeas-core:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Silverpeas Core CVEs to silverpeas:silverpeas-core, missing the package org.silverpeas.core:silverpeas-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-42850",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-36042",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-29392",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-47326",
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-19586"
+      ]
+    },
+    {
+      "name": "undertow-core",
+      "group": "io.undertow",
+      "cpe": "cpe:2.3:a:redhat:undertow:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Undertow Core CVEs to redhat:undertow, missing the package io.undertow:undertow-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-9784",
+        "https://nvd.nist.gov/vuln/detail/cve-2024-1459"
+      ]
+    },
+    {
+      "name": "jeecg-boot-base-core",
+      "group": "org.jeecgframework.boot",
+      "cpe": "cpe:2.3:a:jeecg:jeecg_boot:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "La NVD associe les CVEs de jeecg-boot-base-core à la CPE jeecg:jeecg_boot, couvrant les versions jusqu'à (mais excluant) 3.4.4.",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-47105",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-22881",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-22880",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-46089",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-44585"
+      ]
+    },
+    {
+      "name": "hippo4j-core",
+      "group": "cn.hippo4j",
+      "cpe": "cpe:2.3:a:opengoofy:hippo4j:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Hippo4j CVEs to opengoofy:hippo4j, missing the package cn.hippo4j:hippo4j-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-27095"
+      ]
+    },
+    {
+      "name": "tika-core",
+      "group": "org.apache.tika",
+      "cpe": "cpe:2.3:a:apache:tika:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Tika CVEs to apache:tika, missing the package org.apache.tika:tika-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-54988",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-30126",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-25169",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-1950",
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-1335"
+      ]
+    },
+    {
+      "name": "eventmesh-common",
+      "group": "org.apache.eventmesh",
+      "cpe": "cpe:2.3:a:apache:eventmesh:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache EventMesh CVEs to apache:eventmesh, missing the package org.apache.eventmesh:eventmesh-common",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-39954",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-56180"
+      ]
+    },
+    {
+      "name": "eventmesh-connector-rabbitmq",
+      "group": "org.apache.eventmesh",
+      "cpe": "cpe:2.3:a:apache:eventmesh-connector-rabbitmq:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache EventMesh RabbitMQ Connector CVEs to apache:eventmesh-connector-rabbitmq, missing the package org.apache.eventmesh:eventmesh-connector-rabbitmq",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-26512"
+      ]
+    },
+    {
+      "name": "grpc-netty-shaded",
+      "group": "io.grpc",
+      "cpe": "cpe:2.3:a:grpc:grpc:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps gRPC Netty Shaded CVE to netty:netty, missing the package io.grpc:grpc-netty-shaded",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-55163"
+      ]
+    },
+    {
+      "name": "grpc-core",
+      "group": "io.grpc",
+      "cpe": "cpe:2.3:a:grpc:grpc:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps gRPC CVE to grpc:grpc, missing the package io.grpc:grpc-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-11407",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-7246",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-32731",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-32732"
+      ]
+    },
+    {
+      "name": "seata-core",
+      "group": "org.apache.seata",
+      "cpe": "cpe:2.3:a:apache:seata:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Seata CVEs to apache:seata, missing the package org.apache.seata:seata-metrics-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-53606",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-32897"
+      ]
+    },
+    {
+      "name": "cxf-core",
+      "group": "org.apache.cxf",
+      "cpe": "cpe:2.3:a:apache:cxf:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache CXF CVEs to apache:cxf, missing the package org.apache.cxf:cxf-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23184",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-28752",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-46363",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-46364"
+      ]
+    },
+    {
+      "name": "zeppelin-common",
+      "group": "org.apache.zeppelin",
+      "cpe": "cpe:2.3:a:apache:zeppelin:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Zeppelin CVEs to apache:zeppelin, missing the package org.apache.zeppelin:zeppelin-common",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-52279",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-51775",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-31862",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-31864",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-41169"
+      ]
+    },
+    {
+      "name": "struts-core",
+      "group": "org.apache.struts",
+      "cpe": "cpe:2.3:a:apache:struts:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Struts CVEs to apache:struts, missing the package org.apache.struts:struts-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53677",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-50164",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-17530",
+        "https://nvd.nist.gov/vuln/detail/CVE-2017-9805",
+        "https://nvd.nist.gov/vuln/detail/CVE-2016-6795"
+      ]
+    },
+    {
+      "name": "opencast-common",
+      "group": "org.opencastproject",
+      "cpe": "cpe:2.3:a:apereo:opencast:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Opencast CVEs to apereo:opencast, missing the package org.opencastproject:opencast-common",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-55202",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-41965",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-43821",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-54380",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-52797"
+      ]
     }
   ]
 }
