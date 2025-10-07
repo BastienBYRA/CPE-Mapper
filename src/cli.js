@@ -16,7 +16,7 @@
  */
 
 import { Command } from 'commander';
-import { applyCPEMappings } from "./commands/mapper.js";
+import { applyCPEMappings } from "./commands/apply.js";
 import { updateCPEDatabase } from "./commands/update.js"
 import { setupAppConfig } from './config.js';
 
