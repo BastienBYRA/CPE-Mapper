@@ -583,6 +583,67 @@
         "https://nvd.nist.gov/vuln/detail/CVE-2023-32731",
         "https://nvd.nist.gov/vuln/detail/CVE-2023-32732"
       ]
+    },
+    {
+      "name": "seata-core",
+      "group": "org.apache.seata",
+      "cpe": "cpe:2.3:a:apache:seata:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Seata CVEs to apache:seata, missing the package org.apache.seata:seata-metrics-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-53606",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-32897"
+      ]
+    },
+    {
+      "name": "cxf-core",
+      "group": "org.apache.cxf",
+      "cpe": "cpe:2.3:a:apache:cxf:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache CXF CVEs to apache:cxf, missing the package org.apache.cxf:cxf-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23184",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-28752",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-46363",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-46364"
+      ]
+    },
+    {
+      "name": "zeppelin-common",
+      "group": "org.apache.zeppelin",
+      "cpe": "cpe:2.3:a:apache:zeppelin:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Zeppelin CVEs to apache:zeppelin, missing the package org.apache.zeppelin:zeppelin-common",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-52279",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-51775",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-31862",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-31864",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-41169"
+      ]
+    },
+    {
+      "name": "struts-core",
+      "group": "org.apache.struts",
+      "cpe": "cpe:2.3:a:apache:struts:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Apache Struts CVEs to apache:struts, missing the package org.apache.struts:struts-core",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53677",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-50164",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-17530",
+        "https://nvd.nist.gov/vuln/detail/CVE-2017-9805",
+        "https://nvd.nist.gov/vuln/detail/CVE-2016-6795"
+      ]
+    },
+    {
+      "name": "opencast-common",
+      "group": "org.opencastproject",
+      "cpe": "cpe:2.3:a:apereo:opencast:VERSION_COMPONENT:*:*:*:*:*:*:*",
+      "description": "NVD maps Opencast CVEs to apereo:opencast, missing the package org.opencastproject:opencast-common",
+      "evidence": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-55202",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-41965",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-43821",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-54380",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-52797"
+      ]
     }
   ]
 }
