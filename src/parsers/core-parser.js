@@ -138,6 +138,4 @@ export class CoreParser {
 
         return component.cpe
     }
-
-    
 }
