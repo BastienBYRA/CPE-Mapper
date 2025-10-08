@@ -1,0 +1,45 @@
+# Copyright 2025 Bastien BYRA
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#    http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: CPE-Mapper
+author: Bastien BYRA
+description: a CLI tool and JSON-based database designed to accurately map software package names to their corresponding CPEs (Common Platform Enumerations).
+
+branding:
+  icon: check-square
+  color: red
+
+inputs:
+  input-file:
+    description: The input file (BOM) to which we apply the mapping
+    required: true
+  output-file:
+    description: The name of the output file
+    required: true
+  override-cpe:
+    description: Whether CPE-Mapper should override the existing CPE in the BOM input file or not. Choices are `true` or `false`. Default is `false`
+    required: false
+  verbose:
+    description: Whether CPE-Mapper is running in verbose mode or not. Choices are `true` or `false`. Default is `false`
+
+runs:
+  using: docker
+  image: Dockerfile
+  entrypoint: ghcr.io/bastienbyra/cpe-mapper:1.0.0
+  # **Note**: GitHub Actions sets the working directory to /github/workspace, 
+  # so the container runs outside of /cpe-mapper. Since dependencies are installed 
+  # in /cpe-mapper/node_modules, we need to specify the full path to the script 
+  # to ensure Node can find both the script and its modules.
+  args:
+    - /cpe-mapper/src/gha.js

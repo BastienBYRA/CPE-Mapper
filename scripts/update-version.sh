@@ -20,9 +20,15 @@ if [ -z "$NEW_RELEASE_VERSION" ]; then
     exit 1
 fi
 
+# Update the version in the CLI
 sed -E -i "s/version\('[0-9]+\.[0-9]+\.[0-9]+'\)/version('$NEW_RELEASE_VERSION')/g" src/cli.js
-sed -E -i "s/[0-9]+\.[0-9]+\.[0-9]+/$NEW_RELEASE_VERSION/g" Dockerfile
-sed -E -i "s/\"version\": \"[0-9]+\.[0-9]+\.[0-9]+\"/\"version\": \"$NEW_RELEASE_VERSION\"/" package.json
 
-# To update the package-lock.json
+# Update the version in the Dockerfile
+sed -E -i "s/[0-9]+\.[0-9]+\.[0-9]+/$NEW_RELEASE_VERSION/g" Dockerfile
+
+# Update the version in action.yml Docker image
+sed -E -i "s|(image:\s+ghcr.io/bastienbyra/cpe-mapper:)[0-9]+\.[0-9]+\.[0-9]+|\1$NEW_RELEASE_VERSION|" action.yml
+
+# Update the version in package.json and update the package-lock.json
+sed -E -i "s/\"version\": \"[0-9]+\.[0-9]+\.[0-9]+\"/\"version\": \"$NEW_RELEASE_VERSION\"/" package.json
 npm install
