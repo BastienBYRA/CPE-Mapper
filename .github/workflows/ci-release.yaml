@@ -41,6 +41,7 @@ jobs:
             You can install it throught:
             1. NPM: npm install -g @bastienbyra/cpe-mapper@${{ github.ref_name }}
             2. Docker: docker pull ghcr.io/bastienbyra/cpe-mapper:${{ github.ref_name }}
+            3. GitHub Actions: bastienbyra/cpe-mapper@${{ github.ref_name }}
           draft: false
           prerelease: false
         env:

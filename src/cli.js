@@ -27,7 +27,7 @@ program
   .name('cpe-mapper')
   .description(`CPE-mapper is a CLI tool and JSON-based database designed to accurately map software package names to their corresponding CPEs (Common Platform Enumerations). 
 Its main goal is to improve vulnerability identification in cases where standard package names fail to match known CPEs.`)
-  .version('1.0.0');
+  .version('1.1.0');
 
 program.command('apply')
   .description('Apply CPE mappings to a CycloneDX BOM file')

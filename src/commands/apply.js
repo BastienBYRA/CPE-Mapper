@@ -15,7 +15,6 @@
  */
 
 import fs from 'fs';
-import path from 'path';
 import { updateCPEDatabase } from './update.js';
 import { AppConfig } from '../config.js';
 import { BOMFormats, guessBOMFormat } from '../utils/utils-bom.js';
@@ -77,63 +76,6 @@ export const applyCPEMappings = async (inputFile, outputFile, update, verbose, o
 }
 
 /**
- * Loads and parses a CycloneDX BOM file.
- *
- * @param {string} inputFile - Path to the BOM JSON file.
- * @returns {object} Parsed BOM object.
- * @throws {Error} If the file does not exist or is not valid JSON.
- */
-const loadBomFile = (inputFile) => {
-    if (!fs.existsSync(inputFile)) {
-        console.error(`Input file not found: ${inputFile}`);
-        process.exit(1);
-    }
-    return JSON.parse(fs.readFileSync(inputFile, 'utf-8'));
-}
-
-/**
- * Loads and parses the local CPE mapping database.
- *
- * @param {AppConfig} appConfig - The application configuration. (Required if the CPE database does not exist)
- * @returns {Promise<object>} Parsed CPE mapping database.
- * @throws {Error} If the mapping database does not exist or is not valid JSON.
- */
-const loadCpeMappingDatabase = async (appConfig) => {
-    const dbPath = path.resolve(appConfig.dbOsPath);
-
-    if (!fs.existsSync(dbPath)) {
-        console.warn(`CPE database not found at ${dbPath}, it will be automatically created`);
-        await updateCPEDatabase(appConfig);
-    }
-    return JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
-}
-
-/**
- * Builds a normalized component full name for comparison with the CPE database.
- *
- * Rules:
- * - If both group and name exist → "group:name"
- * - If only name exists → "name"
- * - If only group exists → treated as "name"
- *
- * @param {string} group - Optional package group (e.g., Maven groupId).
- * @param {string} name - Package name.
- * @returns {string|undefined} The normalized full name, or undefined if invalid.
- */
-const getComponentFullName = (group, name) => {
-    if (!group && !name) {
-        console.warn(`No name nor group found for a component`);
-        return;
-    }
-    if (group && !name) {
-        console.warn(`The component only has a group but no name, using group as name`);
-        return `${group}`;
-    }
-    if (!group && name) return `${name}`;
-    if (group && name) return `${group}:${name}`;
-}
-
-/**
  * Writes the mapped BOM to a file.
  *
  * @param {string} outputFile - Path to the output file.
@@ -142,22 +84,4 @@ const getComponentFullName = (group, name) => {
 const generateMappedFile = (outputFile, verbose, bom) => {
     fs.writeFileSync(outputFile, JSON.stringify(bom, null, 2), 'utf-8');
     if (verbose) console.log(`Mapped BOM saved to ${outputFile}`);
-}
-
-
-
-/**
- * !!! To succesfully run, NODE_ENV must be "test"
- * 
- * Ugly way to export function for testing without making them public...
- * If someone have a better way to do that, that is shorter, go with it
- * 
- * I just want the solution to be elegant, simple to understand, and not dependant of an external package
- */
-export let TEST__MAPPER_JS
-if (process.env.NODE_ENV === 'test') {
-  TEST__MAPPER_JS = {
-    getComponentFullName,
-    searchCpeMapping
-  };
 }
