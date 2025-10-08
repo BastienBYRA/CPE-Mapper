@@ -36,7 +36,7 @@ inputs:
 
 runs:
   using: docker
-  image: ghcr.io/bastienbyra/cpe-mapper:1.0.0
+  image: ghcr.io/bastienbyra/cpe-mapper:1.1.0
   entrypoint: node
   # **Note**: GitHub Actions sets the working directory to /github/workspace, 
   # so the container runs outside of /cpe-mapper. Since dependencies are installed 
