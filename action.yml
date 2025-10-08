@@ -38,4 +38,6 @@ runs:
   # main: src/gha.js
   using: docker
   image: Dockerfile
-  entrypoint: '["node", "src/gha.js"]'
+  entrypoint: node
+  args:
+    - src/gha.js
