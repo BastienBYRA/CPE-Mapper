@@ -648,7 +648,7 @@
   "cargo": {
     "packages": []
   },
-  "apt": {
+  "deb": {
     "packages": []
   },
   "apk": {
