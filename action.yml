@@ -34,10 +34,9 @@ inputs:
     description: Whether CPE-Mapper is running in verbose mode or not. Choices are `true` or `false`. Default is `false`
 
 runs:
-  # using: node24
-  # main: src/gha.js
   using: docker
   image: Dockerfile
   entrypoint: node
   args:
-    - src/gha.js
+    - /cpe-mapper/src/gha.js
+  
