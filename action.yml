@@ -14,7 +14,7 @@
 
 name: CPE-Mapper
 author: Bastien BYRA
-description: a CLI tool and JSON-based database designed to accurately map software package names to their corresponding CPEs (Common Platform Enumerations)
+description: CLI tool with JSON database to map software packages to CPEs for accurate SBOM generation
 
 branding:
   icon: check-square
