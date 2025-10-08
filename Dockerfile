@@ -20,7 +20,7 @@ LABEL org.opencontainers.image.documentation="https://github.com/BastienBYRA/CPE
 LABEL org.opencontainers.image.source="https://github.com/BastienBYRA/CPE-Mapper"
 LABEL org.opencontainers.image.version="1.0.0"
 LABEL org.opencontainers.image.vendor="Bastien BYRA"
-LABEL org.opencontainers.image.licenses="Apache-2.0"7
+LABEL org.opencontainers.image.licenses="Apache-2.0"
 LABEL org.opencontainers.image.created=""
 LABEL org.opencontainers.image.revision=""
 
@@ -31,5 +31,5 @@ RUN npm ci --omit=dev
 
 COPY . .
 
-ENTRYPOINT ["node", "src/cli.js"]
+ENTRYPOINT ["node", "/cpe-mapper/src/cli.js"]
 CMD ["help"]
