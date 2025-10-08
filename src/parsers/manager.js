@@ -17,7 +17,7 @@
 import { BOMFormats } from "../utils/utils-bom.js"
 import { MavenParser } from "./maven-parser.js"
 import { ApkParser } from "./apk-parser.js"
-import { AptParser } from "./apt-parser.js"
+import { DebParser } from "./deb-parser.js"
 import { NpmParser } from "./npm-parser.js"
 import { NugetParser } from "./nuget-parser.js"
 import { CargoParser } from "./cargo-parser.js"
@@ -72,7 +72,7 @@ export class ParserManager {
         if (bomContent.components.some((component) => component.purl?.startsWith("pkg:apk/")))
             listParsers.push(new ApkParser());
         if (bomContent.components.some((component) => component.purl?.startsWith("pkg:apt/")))
-            listParsers.push(new AptParser());
+            listParsers.push(new DebParser());
 
         return listParsers;
     };

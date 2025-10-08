@@ -147,7 +147,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Apply CPE mapping
-        uses: BastienBYRA/CPE-Mapper@v1.0.0
+        uses: BastienBYRA/CPE-Mapper@main
         with:
           input-file: testdata/bom.test.json
           output-file: testdata/bom.result.json

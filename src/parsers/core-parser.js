@@ -41,7 +41,7 @@ export class CoreParser {
         }
 
         // Iterate trought BOM components list
-        bomFileContent.components.forEach(component => {
+        bomFileContent.components?.forEach(component => {
             const componentFullName = this.getComponentFullName(component.group, component.name)
             const cpeDbEntry = this.searchCpeMapping(componentFullName, cpeDbContent);
 
@@ -101,7 +101,7 @@ export class CoreParser {
      * @returns {object|undefined} The matching CPE package mapping, or undefined if none found.
      */
     searchCpeMapping = (componentFullName, cpeDb) => {
-        return cpeDb[this.ecosystem].packages.find(cpeDbPkg => {
+        return cpeDb[this.ecosystem]?.packages?.find(cpeDbPkg => {
             let cpeDbPkgFullName;
 
             if (componentFullName.search(":") === -1) cpeDbPkgFullName = `${cpeDbPkg.name}`;

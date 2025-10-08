@@ -16,7 +16,7 @@
 
 import { CoreParser } from './core-parser.js';
 
-export class AptParser extends CoreParser {
+export class DebParser extends CoreParser {
     constructor() {
         super("apt")
     }

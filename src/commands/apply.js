@@ -15,6 +15,7 @@
  */
 
 import fs from 'fs';
+import path from 'path';
 import { updateCPEDatabase } from './update.js';
 import { AppConfig } from '../config.js';
 import { BOMFormats, guessBOMFormat } from '../utils/utils-bom.js';
@@ -73,6 +74,38 @@ export const applyCPEMappings = async (inputFile, outputFile, update, verbose, o
     generateMappedFile(outputFile, verbose, bomContent);
     console.info("BOM mapping has successfully finished");
     return true;
+}
+
+/**
+ * Loads and parses a CycloneDX BOM file.
+ *
+ * @param {string} inputFile - Path to the BOM JSON file.
+ * @returns {object} Parsed BOM object.
+ * @throws {Error} If the file does not exist or is not valid JSON.
+ */
+const loadBomFile = (inputFile) => {
+    if (!fs.existsSync(inputFile)) {
+        console.error(`Input file not found: ${inputFile}`);
+        process.exit(1);
+    }
+    return JSON.parse(fs.readFileSync(inputFile, 'utf-8'));
+}
+
+/**
+ * Loads and parses the local CPE mapping database.
+ *
+ * @param {AppConfig} appConfig - The application configuration. (Required if the CPE database does not exist)
+ * @returns {Promise<object>} Parsed CPE mapping database.
+ * @throws {Error} If the mapping database does not exist or is not valid JSON.
+ */
+const loadCpeMappingDatabase = async (appConfig) => {
+    const dbPath = path.resolve(appConfig.dbOsPath);
+
+    if (!fs.existsSync(dbPath)) {
+        console.warn(`CPE database not found at ${dbPath}, it will be automatically created`);
+        await updateCPEDatabase(appConfig);
+    }
+    return JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 }
 
 /**
