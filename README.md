@@ -48,6 +48,7 @@ This ensures that you are notified whenever a new CVE is published for the softw
 While this approach may generate false positives (for instance, some CVEs might affect a derived package you don’t actually use), it provides the safest coverage to ensure you don’t miss any relevant vulnerabilities.
 
 ## Getting Started
+You can use CPE-Mapper in your CI/CD or in your local machine.
 
 ### Installing
 You can install CPE-mapper in several ways:
@@ -59,7 +60,7 @@ npm install -g @bastienbyra/cpe-mapper
 # You can then run it using `cpe-mapper`
 ```
 
-2. Through `Docker image`.
+2. Through a `Docker image`.
 ```bash
 docker run -v path/to/your/bom/folder:/data --rm ghcr.io/bastienbyra/cpe-mapper:latest apply -i /data/bom.json -o /data/mapped_bom.json
 ```
@@ -105,6 +106,59 @@ Options:
 Check if the database has updates and apply them.
 ```bash
 cpe-mapper update
+```
+
+### GitHub Actions
+CPE-Mapper provides a GitHub Action that can be used to apply CPE mappings to your BOM files.
+
+#### Configuration
+> **Note**: You can find the configuration in the [action.yml](./action.yml) file.
+
+```yaml
+- uses: BastienBYRA/CPE-Mapper@main
+  with:
+    # The input BOM file to which CPE-Mapper applies the mapping.
+    # Required. Example: testdata/bom.test.json
+    input-file: ''
+
+    # The name of the output BOM file.
+    # Required. Example: testdata/bom.result.json
+    output-file: ''
+
+    # Whether to override existing CPEs in the input BOM file. Choices are `true` or `false`.
+    # Optional. Default: false
+    override-cpe: false
+
+    # Enable verbose mode. Choices are `true` or `false`.
+    # Optional. Default: false
+    verbose: false
+```
+> **Tip**: It is recommended to use a release/tag version instead of main to make the workflow immutable.
+
+#### Usage
+```yaml
+name: Security CI
+
+on: [push]
+
+jobs:
+  apply-cpe:
+    name: Apply CPE to BOM file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply CPE mapping
+        uses: BastienBYRA/CPE-Mapper@v1.0.0
+        with:
+          input-file: testdata/bom.test.json
+          output-file: testdata/bom.result.json
+
+      # Archive the output BOM file as an artifact
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mapped-sbom
+          path: testdata/bom.result.json
+          retention-days: 1
 ```
 ---
 
