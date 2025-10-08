@@ -32,6 +32,7 @@ inputs:
     required: false
   verbose:
     description: Whether CPE-Mapper is running in verbose mode or not. Choices are `true` or `false`. Default is `false`
+    required: false
 
 runs:
   using: docker
