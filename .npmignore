@@ -27,3 +27,4 @@ Dockerfile
 # Files types
 *.md
 *.yaml
+*.yml
