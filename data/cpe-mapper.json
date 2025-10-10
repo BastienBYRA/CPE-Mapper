@@ -637,7 +637,92 @@
     ]
   },
   "npm": {
-    "packages": []
+    "packages": [
+      {
+        "name": "vite",
+        "cpe": "cpe:2.3:a:vitejs:vite:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Vite CVEs to vitejs:vite, missing the package vite",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-46565",
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-30208",
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-31486"
+        ]
+      },
+      {
+        "name": "codeceptjs",
+        "cpe": "cpe:2.3:a:codecept:codeceptjs:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps CodeceptJS CVEs to codecept:codeceptjs, missing the package codeceptjs",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-57285"
+        ]
+      },
+      {
+        "name": "sanitize-html",
+        "cpe": "cpe:2.3:a:apostrophecms:sanitize-html:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD/Security advisories map sanitize-html CVEs to apostrophecms:sanitize_html, missing the package sanitize-html",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2024-21501",
+          "https://nvd.nist.gov/vuln/detail/CVE-2022-25887",
+          "https://nvd.nist.gov/vuln/detail/CVE-2019-25225"
+        ]
+      },
+      {
+        "name": "hono",
+        "cpe": "cpe:2.3:a:hono:hono:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Hono CVEs to hono:hono, missing the package hono",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-59139"
+        ]
+      },
+      {
+        "name": "electron",
+        "cpe": "cpe:2.3:a:electronjs:electron:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Electron CVEs to electronjs:electron, missing the package electron",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/cve-2022-36077",
+          "https://nvd.nist.gov/vuln/detail/cve-2023-44402"
+        ]
+      },
+      {
+        "name": "next",
+        "cpe": "cpe:2.3:a:vercel:next.js:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Next.js CVEs to vercel:next.js, missing the package next",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-29927",
+          "https://nvd.nist.gov/vuln/detail/CVE-2024-56332",
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-49005",
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-57752",
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-55173"
+        ]
+      },
+      {
+        "name": "payload",
+        "cpe": "cpe:2.3:a:payloadcms:payload:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Payload CVEs to payloadcms:payload, missing the package payload",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2023-30843",
+          "https://nvd.nist.gov/vuln/detail/CVE-2022-27952"
+        ]
+      },
+      {
+        "name": "react",
+        "cpe": "cpe:2.3:a:facebook:react:VERSION_COMPONENT:*:*:*:*:*:*:*",
+        "description": "NVD maps React CVEs to facebook:react, missing the package react",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2018-6341"
+        ]
+      },
+      {
+        "name": "jspdf",
+        "cpe": "cpe:2.3:a:parall:jspdf:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps jsPDF CVEs to parall:jspdf, missing the package jspdf",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-57810",
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-29907",
+          "https://nvd.nist.gov/vuln/detail/CVE-2020-7690"
+        ]
+      }
+    ]
   },
   "pypi": {
     "packages": []
