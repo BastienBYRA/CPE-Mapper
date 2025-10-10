@@ -10,7 +10,8 @@
     "test": "NODE_ENV=test node --test",
     "wtest": "set NODE_ENV=test&& node --test",
     "test-apply": "node src/cli.js apply -i testdata/bom.test.json -o testdata/result.test.json",
-    "update-version": "scripts/update-version.sh"
+    "update-version": "scripts/update-version.sh",
+    "sbom": "npm sbom --sbom-format cyclonedx"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,12 @@
     "url": "https://github.com/BastienBYRA/CPE-Mapper/issues"
   },
   "keywords": [
-    "security", "cpe", "nvd", "vulnerability", "sbom", "cyclonedx"
+    "security",
+    "cpe",
+    "nvd",
+    "vulnerability",
+    "sbom",
+    "cyclonedx"
   ],
   "homepage": "https://github.com/BastienBYRA/CPE-Mapper#readme",
   "dependencies": {
