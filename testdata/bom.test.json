@@ -19,6 +19,12 @@
       "group": "org.apache.tomcat.embed",
       "version": "10.1.39",
       "purl": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.39"
+    },
+    {
+      "type": "library",
+      "name": "jspdf",
+      "version": "1.1.1",
+      "purl": "pkg:npm/jspdf@1.1.1"
     }
   ]
 }
