@@ -659,7 +659,7 @@
       {
         "name": "sanitize-html",
         "cpe": "cpe:2.3:a:apostrophecms:sanitize-html:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
-        "description": "NVD/Security advisories map sanitize-html CVEs to apostrophecms:sanitize_html, missing the package sanitize-html",
+        "description": "NVD map sanitize-html CVEs to apostrophecms:sanitize_html, missing the package sanitize-html",
         "evidence": [
           "https://nvd.nist.gov/vuln/detail/CVE-2024-21501",
           "https://nvd.nist.gov/vuln/detail/CVE-2022-25887",
@@ -720,6 +720,108 @@
           "https://nvd.nist.gov/vuln/detail/CVE-2025-57810",
           "https://nvd.nist.gov/vuln/detail/CVE-2025-29907",
           "https://nvd.nist.gov/vuln/detail/CVE-2020-7690"
+        ]
+      },
+      {
+        "name": "express",
+        "cpe": "cpe:2.3:a:openjsf:express:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Express CVEs to openjsf:express, missing the package express",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2024-43796",
+          "https://nvd.nist.gov/vuln/detail/CVE-2024-10491"
+        ]
+      },
+      {
+        "name": "moment",
+        "cpe": "cpe:2.3:a:momentjs:moment:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Moment.js CVEs to momentjs:moment, missing the package moment",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2022-31129",
+          "https://nvd.nist.gov/vuln/detail/CVE-2022-24785",
+          "https://nvd.nist.gov/vuln/detail/CVE-2017-18214",
+          "https://nvd.nist.gov/vuln/detail/CVE-2016-4055"
+        ]
+      },
+      {
+        "name": "lodash",
+        "cpe": "cpe:2.3:a:lodash:lodash:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Lodash CVEs to lodash:lodash, missing the package lodash",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2021-23337",
+          "https://nvd.nist.gov/vuln/detail/CVE-2019-10744"
+        ]
+      },
+      {
+        "name": "nuxt",
+        "cpe": "cpe:2.3:a:nuxt:nuxt:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Nuxt CVEs to nuxt:nuxt, missing the package nuxt",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2023-3224",
+          "https://nvd.nist.gov/vuln/detail/CVE-2024-42352",
+          "https://nvd.nist.gov/vuln/detail/CVE-2024-34344"
+        ]
+      },
+      {
+        "name": "axios",
+        "cpe": "cpe:2.3:a:axios:axios:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Axios CVE to axios:axios, missing the package axios",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-58754",
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-27152",
+          "https://nvd.nist.gov/vuln/detail/CVE-2024-57965",
+          "https://nvd.nist.gov/vuln/detail/CVE-2024-39338",
+          "https://nvd.nist.gov/vuln/detail/CVE-2023-45857"
+        ]
+      },
+      {
+        "name": "webpack",
+        "cpe": "cpe:2.3:a:webpack.js:webpack:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Webpack CVEs to webpack.js:webpack, missing the package webpack",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2024-43788",
+          "https://nvd.nist.gov/vuln/detail/cve-2023-28154"
+        ]
+      },
+      {
+        "name": "node-uuid",
+        "cpe": "cpe:2.3:a:node-uuid_project:node-uuid:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Node UUID CVEs to node-uuid_project:node-uuid, missing the package node-uuid",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2015-8851"
+        ]
+      },
+      {
+        "name": "minimist",
+        "cpe": "cpe:2.3:a:substack:minimist:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Minimist CVEs to substack:minimist, missing the package minimist",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2021-44906",
+          "https://nvd.nist.gov/vuln/detail/CVE-2020-7598"
+        ]
+      },
+      {
+        "name": "jquery",
+        "cpe": "cpe:2.3:a:jquery:jquery:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps jQuery CVEs to jquery:jquery, missing the package jquery",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2020-11022",
+          "https://nvd.nist.gov/vuln/detail/CVE-2020-11023"
+        ]
+      },
+      {
+        "name": "@angular/common",
+        "cpe": "cpe:2.3:a:angular:angular:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Angular CVEs to angular:angular, missing the package @angular/common",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/cve-2021-4231"
+        ]
+      },
+      {
+        "name": "semver",
+        "cpe": "cpe:2.3:a:npmjs:semver:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Semver CVEs to npmjs:semver, missing the package semver",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/cve-2022-25883"
         ]
       }
     ]
