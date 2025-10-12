@@ -823,6 +823,54 @@
         "evidence": [
           "https://nvd.nist.gov/vuln/detail/cve-2022-25883"
         ]
+      },
+      {
+        "name": "shelljs",
+        "cpe": "cpe:2.3:a:shelljs_project:shelljs:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Shelljs CVEs to shelljs_project:shelljs, missing the package shelljs",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2022-0144"
+        ]
+      },
+      {
+        "name": "js-yaml",
+        "cpe": "cpe:2.3:a:js-yaml_project:js-yaml:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps JS-YAML CVEs to js-yaml_project:js-yaml, missing the package js-yaml",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2013-4660"
+        ]
+      },
+      {
+        "name": "aws-sdk",
+        "cpe": "cpe:2.3:a:amazon:aws_sdk_for_javascipt:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps JavaScript AWS SDK CVEs to amazon:aws_sdk_for_javascipt, missing the package aws-sdk",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2013-4660"
+        ]
+      },
+      {
+        "name": "underscore",
+        "cpe": "cpe:2.3:a:underscorejs:underscore:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps Underscore CVE to underscorejs:underscore, missing the package underscore",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2021-23358"
+        ]
+      },
+      {
+        "name": "xml2js",
+        "cpe": "cpe:2.3:a:xml2js_project:xml2js:VERSION_COMPONENT:*:*:*:*:node.js:*:*",
+        "description": "NVD maps XML2js CVE to xml2js_project:xml2js, missing the package xml2js",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2023-0842"
+        ]
+      },
+      {
+        "name": "mongodb",
+        "cpe": "cpe:2.3:a:mongodb:node.js:VERSION_COMPONENT:*:*:*:*:mongodb:*:*",
+        "description": "NVD maps MongoDB Node.js driver CVEs to mongodb:node.js, missing the package mongodb",
+        "evidence": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2021-32050"
+        ]
       }
     ]
   },
