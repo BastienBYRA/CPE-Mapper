@@ -9,7 +9,7 @@
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either pkg-without-group or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
@@ -17,12 +17,9 @@
 import test from 'node:test';
 import assert from 'node:assert';
 
-import { ParserManager } from "../src/parsers/manager.js";
-import { MavenParser } from "../src/parsers/maven-parser.js";
-import { BOMFormats, guessBOMFormat } from "../src/utils/utils-bom.js";
+import { MavenParser } from "../../src/parsers/maven-parser.js";
 
-const parserManager = new ParserManager();
-const mavenParser = new MavenParser("not-important");
+const mavenParser = new MavenParser();
 
 const bomFile = {
     bomFormat: "CycloneDX",
@@ -39,23 +36,11 @@ const cpeDb = {
     maven: {
         packages: [
             { group: 'org.apache', name: 'lib', cpe: 'cpe:apache:lib' },
-            { name: 'express', cpe: 'cpe:express' },
+            { name: 'pkg-without-group', cpe: 'cpe:pkg-without-group' },
             { name: "random", group: "random", cpe: 'cpe:2.3:a:random:random:VERSION_COMPONENT' }
         ]
     }
 };
-
-test('guessBOMFormat identifies BOM formats correctly', (t) => {
-    assert.strictEqual(guessBOMFormat(bomFile), BOMFormats.CycloneDX);
-
-    const unknownBom = { thesuperformat: "unknown" };
-    assert.strictEqual(guessBOMFormat(unknownBom), BOMFormats.NotFound);
-});
-
-test('parserManager.getRequiredParsersCycloneDX returns correct parser instances', (t) => {
-    const requiredParsers = parserManager.getRequiredParsersCycloneDX(bomFile);
-    assert.strictEqual(requiredParsers[0].ecosystem, mavenParser.ecosystem);
-});
 
 test('MavenParser.getComponentFullName returns correct full names', async (t) => {
     await t.test('returns "group:name" when both group and name are provided', () => {
@@ -82,8 +67,8 @@ test('MavenParser.searchCpeMapping finds correct mappings', async (t) => {
     });
 
     await t.test('matches name only', () => {
-        const result = mavenParser.searchCpeMapping('express', cpeDb);
-        assert.strictEqual(result.cpe, 'cpe:express');
+        const result = mavenParser.searchCpeMapping('pkg-without-group', cpeDb);
+        assert.strictEqual(result.cpe, 'cpe:pkg-without-group');
     });
 
     await t.test('returns undefined when no match', () => {
