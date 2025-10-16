@@ -11,7 +11,9 @@
     "wtest": "set NODE_ENV=test&& node --test",
     "test-apply": "node src/cli.js apply -i testdata/bom.test.json -o testdata/result.test.json",
     "update-version": "scripts/update-version.sh",
-    "sbom": "npm sbom --sbom-format cyclonedx"
+    "sbom": "npm sbom --sbom-format cyclonedx",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,9 @@
   "dependencies": {
     "commander": "^14.0.1",
     "env-paths": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.37.0"
   },
   "bin": {
     "cpe-mapper": "./src/cli.js"
