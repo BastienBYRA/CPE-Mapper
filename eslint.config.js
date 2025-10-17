@@ -2,6 +2,7 @@ import js from "@eslint/js";
 import globals from "globals";
 
 export default [
+  js.configs.recommended,
   {
     files: ["**/*.js"],
     languageOptions: {
@@ -13,12 +14,11 @@ export default [
       },
     },
     rules: {
-      ...js.configs.recommended.rules,
-      "no-unused-vars": ["warn", { args: "none", ignoreRestSiblings: true }],
+      "no-unused-vars": ["warn"],
       "no-console": "off",
     },
   },
   {
-    ignores: ["dist/", "build/", "node_modules/"]
-  }
+    ignores: ["dist/", "build/", "node_modules/"],
+  },
 ];

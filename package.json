@@ -37,12 +37,12 @@
     "commander": "^14.0.1",
     "env-paths": "^3.0.0"
   },
-  "devDependencies": {
-    "eslint": "^9.37.0",
-    "@eslint/js": "^9.13.0",
-    "globals": "^15.12.0"
-  },
   "bin": {
     "cpe-mapper": "./src/cli.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "eslint": "^9.37.0",
+    "globals": "^16.4.0"
   }
 }
