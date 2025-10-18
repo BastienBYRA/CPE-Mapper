@@ -13,3 +13,53 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { isBoolean, isURL, isFilePath } from '../../src/utils/utils.js';
+import { writeFileSync, unlinkSync } from 'node:fs';
+
+test('isBoolean identifies boolean strings correctly', async (t) => {
+    await t.test('returns true for "true" and "false" variants', () => {
+        assert.strictEqual(isBoolean('true'), true);
+        assert.strictEqual(isBoolean('false'), true);
+        assert.strictEqual(isBoolean('True'), true);
+        assert.strictEqual(isBoolean('False'), true);
+    });
+
+    await t.test('returns false for non-boolean strings', () => {
+        assert.strictEqual(isBoolean('yes'), false);
+        assert.strictEqual(isBoolean('no'), false);
+        assert.strictEqual(isBoolean('1'), false);
+        assert.strictEqual(isBoolean(''), false);
+        assert.strictEqual(isBoolean(undefined), false);
+    });
+});
+
+test('isURL detects URLs correctly', async (t) => {
+    await t.test('returns true for http and https URLs', () => {
+        assert.strictEqual(isURL('http://example.com'), true);
+        assert.strictEqual(isURL('https://github.com'), true);
+    });
+
+    await t.test('returns false for non-URL strings', () => {
+        assert.strictEqual(isURL('ftp://example.com'), false);
+        assert.strictEqual(isURL('example.com'), false);
+        assert.strictEqual(isURL('www.example.com'), false);
+        assert.strictEqual(isURL(''), false);
+    });
+});
+
+test('isFilePath verifies file existence correctly', async (t) => {
+    const tempFile = './temp-test-file.txt';
+
+    await t.test('returns true if file exists', () => {
+        writeFileSync(tempFile, 'test content');
+        assert.strictEqual(isFilePath(tempFile), true);
+    });
+
+    await t.test('returns false if file does not exist', () => {
+        unlinkSync(tempFile);
+        assert.strictEqual(isFilePath(tempFile), false);
+    });
+});
