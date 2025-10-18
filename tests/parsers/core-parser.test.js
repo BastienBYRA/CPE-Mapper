@@ -13,3 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import test from 'node:test';
+import assert from 'node:assert';
+
+import { CoreParser } from "../../src/parsers/core-parser.js";
+
+test('CoreParser should throw an error when instancied', () => {
+    test('returns "group:name" when both group and name are provided', () => {
+        assert.throws(() => new CoreParser(), {
+            message: 'The CoreParser should not be instantiated directly'
+        });
+    });
+});
