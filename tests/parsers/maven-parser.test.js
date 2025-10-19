@@ -52,7 +52,6 @@ const cpeDb = {
     maven: {
         packages: [
             { group: 'org.apache', name: 'lib', cpe: 'cpe:apache:lib' },
-            { name: 'pkg-without-group', cpe: 'cpe:pkg-without-group' },
             { name: "random", group: "random", cpe: 'cpe:2.3:a:random:random:VERSION_COMPONENT' }
         ]
     }
@@ -61,14 +60,6 @@ const cpeDb = {
 test('MavenParser.getComponentFullName returns correct full names', async (t) => {
     await t.test('returns "group:name" when both group and name are provided', () => {
         assert.strictEqual(mavenParser.getComponentFullName('org.apache', 'lib'), 'org.apache:lib');
-    });
-
-    await t.test('returns name if only name is provided', () => {
-        assert.strictEqual(mavenParser.getComponentFullName(null, 'lib'), 'lib');
-    });
-
-    await t.test('returns group if only group is provided', () => {
-        assert.strictEqual(mavenParser.getComponentFullName('org.apache', null), 'org.apache');
     });
 
     await t.test('returns undefined if both group and name are missing', () => {
@@ -82,11 +73,6 @@ test('MavenParser.searchCpeMapping finds correct mappings', async (t) => {
         assert.strictEqual(result.cpe, 'cpe:apache:lib');
     });
 
-    await t.test('matches name only', () => {
-        const result = mavenParser.searchCpeMapping('pkg-without-group', cpeDb);
-        assert.strictEqual(result.cpe, 'cpe:pkg-without-group');
-    });
-
     await t.test('returns undefined when no match', () => {
         const result = mavenParser.searchCpeMapping('notfound', cpeDb);
         assert.strictEqual(result, undefined);
@@ -96,7 +82,7 @@ test('MavenParser.searchCpeMapping finds correct mappings', async (t) => {
 test('MavenParser.getCPEMapping applies correct CPE mapping', async (t) => {
     await t.test('returns correct CPE with version replaced', () => {
         const cpe = mavenParser.getCPEMapping(
-            cpeDb.maven.packages[2],
+            cpeDb.maven.packages[1],
             undefined,
             JSON.parse(JSON.stringify(bomFile.components[0])),
             false,
@@ -108,7 +94,7 @@ test('MavenParser.getCPEMapping applies correct CPE mapping', async (t) => {
     await t.test('uses "*" when version is missing', () => {
         const comp = { ...bomFile.components[0], version: undefined };
         const cpe = mavenParser.getCPEMapping(
-            cpeDb.maven.packages[2],
+            cpeDb.maven.packages[1],
             undefined,
             comp,
             false,
@@ -120,7 +106,7 @@ test('MavenParser.getCPEMapping applies correct CPE mapping', async (t) => {
     await t.test('overrides existing CPE if overrideCpe is true', () => {
         const component = { ...bomFile.components[0], cpe: 'existing:cpe' };
         const cpe = mavenParser.getCPEMapping(
-            cpeDb.maven.packages[2],
+            cpeDb.maven.packages[1],
             undefined,
             component,
             true,

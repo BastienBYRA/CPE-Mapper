@@ -18,6 +18,6 @@ import { CoreParser } from './core-parser.js';
 
 export class DebParser extends CoreParser {
     constructor() {
-        super("apt")
+        super("deb")
     }
 }
