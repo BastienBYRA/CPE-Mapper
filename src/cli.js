@@ -33,7 +33,7 @@ program.command('apply')
   .description('Apply CPE mappings to a CycloneDX BOM file')
   .requiredOption('-i, --input-file <file>', 'Input BOM file (JSON)')
   .requiredOption('-o, --output-file <file>', 'Output mapped BOM file')
-  .option('-u, --update', "Update the CPE Mapping database")
+  .option('--no-update', 'Disable updating the CPE Mapping database')
   .option('-v, --verbose', 'Enable verbose logging')
   .option('--override-cpe', 'Override BOM CPEs with mapped values from our database')
   .action((options) => {

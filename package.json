@@ -9,6 +9,8 @@
     "help": "node src/cli.js help",
     "test": "NODE_ENV=test node --test",
     "wtest": "set NODE_ENV=test&& node --test",
+    "test-cov": "NODE_ENV=test node --experimental-test-coverage --test",
+    "wtest-cov": "set NODE_ENV=test&& node --experimental-test-coverage --test",
     "test-apply": "node src/cli.js apply -i testdata/bom.test.json -o testdata/result.test.json",
     "update-version": "scripts/update-version.sh",
     "sbom": "npm sbom --sbom-format cyclonedx",

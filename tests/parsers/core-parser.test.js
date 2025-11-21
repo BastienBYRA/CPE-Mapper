@@ -14,10 +14,15 @@
  * limitations under the License.
  */
 
-import { CoreParser } from './core-parser.js';
+import test from 'node:test';
+import assert from 'node:assert';
 
-export class DebParser extends CoreParser {
-    constructor() {
-        super("deb")
-    }
-}
+import { CoreParser } from "../../src/parsers/core-parser.js";
+
+test('CoreParser should throw an error when instancied', () => {
+    test('returns "group:name" when both group and name are provided', () => {
+        assert.throws(() => new CoreParser(), {
+            message: 'The CoreParser should not be instantiated directly'
+        });
+    });
+});

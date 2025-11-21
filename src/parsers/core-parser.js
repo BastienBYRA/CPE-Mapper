@@ -15,12 +15,16 @@
  */
 
 /**
- * Represents the common / default parser.
- * @property {string} ecosystem
- * @property {boolean} hasGroup
+ * Represents the common/default parser.
+ *
+ * The CoreParser should not be instantiated directly.
+ *
+ * @property {string} ecosystem The ecosystem associated with this parser
+ * @property {boolean} hasGroup Indicates whether the parser supports grouping
  */
 export class CoreParser {
     constructor(ecosystem) {
+        if (!ecosystem) throw new TypeError("The CoreParser should not be instantiated directly");
         this.ecosystem = ecosystem
     }
 

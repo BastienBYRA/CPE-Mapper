@@ -2,5 +2,7 @@
 node_modules/
 
 # Testing
-testdata/
+testdata/*
+!testdata/
 !testdata/bom.test.json
+!testdata/expected-bom.test.json

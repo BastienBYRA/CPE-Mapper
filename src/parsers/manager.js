@@ -37,7 +37,6 @@ export class ParserManager {
      * @param {string} bomFormat The detected BOM format (e.g., "CycloneDX" or "SPDX")
      * @param {object} bomContent The BOM file content
      * @returns {Array<object>} A list of parser instances required for processing the BOM
-     * @throws {Error} Exits the process if no known ecosystems are found
      */
     getRequiredParsers = (bomFormat, bomContent) => {
         let listParsers = [];
@@ -78,14 +77,17 @@ export class ParserManager {
     };
 
     /**
-     * Detects which ecosystems are present in an SPDX BOM file.
-     * This method is currently not implemented.
+     * Detects which ecosystems are present in a SPDX BOM file and
+     * returns the appropriate parser instances for each one.
+     * 
+     * WARNING: This method is currently not implemented.
+     * TODO: Need to be implemented
      *
-     * @param {object} bomContent The parsed SPDX BOM file
-     * @returns {void}
+     * @param {object} bomContent The parsed CycloneDX BOM file
+     * @returns {Array<object>} The list of parser instances matching the ecosystems found
      */
     getRequiredParserSPDX = (bomContent) => {
         console.error("The SPDX parser has not been implemented yet");
-        process.exit(1);
+        return []
     };
 }
