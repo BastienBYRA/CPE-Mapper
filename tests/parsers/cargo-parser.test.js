@@ -52,9 +52,9 @@ test('CargoParser.searchCpeMapping finds correct mappings', async (t) => {
     });
 });
 
-test('CargoParser.getCPEMapping applies correct CPE mapping', async (t) => {
+test('CargoParser.setCPEMappingCycloneDX applies correct CPE mapping', async (t) => {
     await t.test('returns correct CPE with version replaced', () => {
-        const cpe = cargoParser.getCPEMapping(
+        const cpe = cargoParser.setCPEMappingCycloneDX(
             cpeDb.cargo.packages[1],
             undefined,
             JSON.parse(JSON.stringify(bomFile.components[0])),
@@ -66,7 +66,7 @@ test('CargoParser.getCPEMapping applies correct CPE mapping', async (t) => {
 
     await t.test('uses "*" when version is missing', () => {
         const comp = { ...bomFile.components[0], version: undefined };
-        const cpe = cargoParser.getCPEMapping(
+        const cpe = cargoParser.setCPEMappingCycloneDX(
             cpeDb.cargo.packages[1],
             undefined,
             comp,
@@ -78,7 +78,7 @@ test('CargoParser.getCPEMapping applies correct CPE mapping', async (t) => {
 
     await t.test('overrides existing CPE if overrideCpe is true', () => {
         const component = { ...bomFile.components[0], cpe: 'existing:cpe' };
-        const cpe = cargoParser.getCPEMapping(
+        const cpe = cargoParser.setCPEMappingCycloneDX(
             cpeDb.cargo.packages[1],
             undefined,
             component,

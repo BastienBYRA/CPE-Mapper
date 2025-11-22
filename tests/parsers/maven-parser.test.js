@@ -79,9 +79,9 @@ test('MavenParser.searchCpeMapping finds correct mappings', async (t) => {
     });
 });
 
-test('MavenParser.getCPEMapping applies correct CPE mapping', async (t) => {
+test('MavenParser.setCPEMappingCycloneDX applies correct CPE mapping', async (t) => {
     await t.test('returns correct CPE with version replaced', () => {
-        const cpe = mavenParser.getCPEMapping(
+        const cpe = mavenParser.setCPEMappingCycloneDX(
             cpeDb.maven.packages[1],
             undefined,
             JSON.parse(JSON.stringify(bomFile.components[0])),
@@ -93,7 +93,7 @@ test('MavenParser.getCPEMapping applies correct CPE mapping', async (t) => {
 
     await t.test('uses "*" when version is missing', () => {
         const comp = { ...bomFile.components[0], version: undefined };
-        const cpe = mavenParser.getCPEMapping(
+        const cpe = mavenParser.setCPEMappingCycloneDX(
             cpeDb.maven.packages[1],
             undefined,
             comp,
@@ -105,7 +105,7 @@ test('MavenParser.getCPEMapping applies correct CPE mapping', async (t) => {
 
     await t.test('overrides existing CPE if overrideCpe is true', () => {
         const component = { ...bomFile.components[0], cpe: 'existing:cpe' };
-        const cpe = mavenParser.getCPEMapping(
+        const cpe = mavenParser.setCPEMappingCycloneDX(
             cpeDb.maven.packages[1],
             undefined,
             component,
