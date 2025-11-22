@@ -21,7 +21,7 @@ import { ParserManager } from "../../src/parsers/manager.js";
 import { MavenParser } from "../../src/parsers/maven-parser.js";
 import { BOMFormats } from "../../src/utils/utils-bom.js";
 
-const bomFile = {
+const bomFileCycloneDX = {
     bomFormat: "CycloneDX",
     specVersion: "1.6",
     components: [{
@@ -32,22 +32,33 @@ const bomFile = {
     }]
 };
 
+const bomFileSPDX = {
+    spdxVersion: "SPDX-2.3",
+    packages: [{
+        name: "tomcat-embed-core",
+        versionInfo: "10.1.39",
+        externalRefs: [{
+            referenceCategory: "PACKAGE-MANAGER",
+            referenceType: "purl",
+            referenceLocator: "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.39"
+            }]
+        }
+    ]
+}
+
 const parserManager = new ParserManager();
 
 test('ParserManager.getRequiredParsers correctly identify SBOM format and returns correct parser instances', async (t) => {
     await t.test('getRequiredParsers calls the correct method for CycloneDX', () => {
         const bomFormat = BOMFormats.CycloneDX;
-        const result = parserManager.getRequiredParsers(bomFormat, bomFile);
+        const result = parserManager.getRequiredParsers(bomFormat, bomFileCycloneDX);
         assert.strictEqual(result[0].ecosystem, "maven");
     });
 
-    /**
-     * WARNING: SPDX parsing is not yet implemented
-     */
     await t.test('getRequiredParsers calls the correct method for SPDX', () => {
         const bomFormat = BOMFormats.SPDX;
-        const result = parserManager.getRequiredParsers(bomFormat, {});
-        assert.deepStrictEqual(result, []);
+        const result = parserManager.getRequiredParsers(bomFormat, bomFileSPDX);
+        assert.deepStrictEqual(result[0].ecosystem, "maven");
     });
 
     await t.test('getRequiredParsers returns an empty list for unknown BOM format', () => {
@@ -58,16 +69,15 @@ test('ParserManager.getRequiredParsers correctly identify SBOM format and return
 });
 
 test('parserManager.getRequiredParsersCycloneDX returns correct parser instances', () => {
-    const requiredParsers = parserManager.getRequiredParsersCycloneDX(bomFile);
+    const requiredParsers = parserManager.getRequiredParsersCycloneDX(bomFileCycloneDX);
     const mavenParser = new MavenParser();
 
     assert.strictEqual(requiredParsers[0].ecosystem, mavenParser.ecosystem);
 });
 
-/**
- * WARNING: SPDX parsing is not yet implemented
- */
 test('parserManager.getRequiredParserSPDX returns correct parser instances', () => {
-    const requiredParsers = parserManager.getRequiredParserSPDX({});
-    assert.deepStrictEqual(requiredParsers, []);
+    const requiredParsers = parserManager.getRequiredParserSPDX(bomFileSPDX);
+    const mavenParser = new MavenParser();
+
+    assert.strictEqual(requiredParsers[0].ecosystem, mavenParser.ecosystem);
 });

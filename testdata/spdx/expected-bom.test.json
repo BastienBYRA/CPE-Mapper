@@ -1,0 +1,55 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "@bastienbyra/cpe-mapper@1.1.0",
+  "documentNamespace": "http://spdx.org/spdxdocs/@bastienbyra%2fcpe-mapper-1.1.0-***",
+  "creationInfo": {
+    "created": "2025-11-22T08:42:12.232Z",
+    "creators": [
+      "Tool: npm/cli-11.6.0"
+    ]
+  },
+  "documentDescribes": [
+    "SPDXRef-Package-bastienbyra.cpe-mapper-1.1.0"
+  ],
+  "packages": [
+    {
+      "name": "tomcat-embed-core",
+      "versionInfo": "10.1.39",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.39"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:apache:tomcat:10.1.39:*:*:*:*:*:*:*"
+        }
+      ]
+    },
+    {
+      "name": "jspdf",
+      "versionInfo": "1.1.1",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/jspdf@1.1.1"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:jspdf:jspdf:1.1.1:*:*:*:*:*:*:*"
+        },
+        {
+          "referenceCategory": "SECURITY",
+          "referenceType": "cpe23Type",
+          "referenceLocator": "cpe:2.3:a:parall:jspdf:1.1.1:*:*:*:*:node.js:*:*"
+        }
+      ]
+    }
+  ]
+}
