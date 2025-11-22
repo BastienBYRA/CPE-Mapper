@@ -21,9 +21,9 @@ import { applyCPEMappings } from '../../src/commands/apply.js'
 import { setupAppConfig } from '../../src/config.js'
 import { readFileSync } from 'node:fs';
 
-const inputFile = "testdata/bom.test.json"
-const expectedFile = "testdata/expected-bom.test.json"
-const outputFile = "testdata/result.test.json"
+const inputFile = "testdata/cyclonedx/bom.test.json"
+const expectedFile = "testdata/cyclonedx/expected-bom.test.json"
+const outputFile = "testdata/cyclonedx-tests-gen/result.test.json"
 
 test('applyCPEMappings apply the correct CPE mapping to a BOM file', async (t) => {
     const result = await applyCPEMappings(inputFile, outputFile, true, false, false, setupAppConfig())

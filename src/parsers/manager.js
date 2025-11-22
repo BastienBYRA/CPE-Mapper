@@ -70,7 +70,7 @@ export class ParserManager {
             listParsers.push(new CargoParser());
         if (bomContent.components.some((component) => component.purl?.startsWith("pkg:apk/")))
             listParsers.push(new ApkParser());
-        if (bomContent.components.some((component) => component.purl?.startsWith("pkg:apt/")))
+        if (bomContent.components.some((component) => component.purl?.startsWith("pkg:deb/")))
             listParsers.push(new DebParser());
 
         return listParsers;
@@ -79,15 +79,28 @@ export class ParserManager {
     /**
      * Detects which ecosystems are present in a SPDX BOM file and
      * returns the appropriate parser instances for each one.
-     * 
-     * WARNING: This method is currently not implemented.
-     * TODO: Need to be implemented
      *
-     * @param {object} bomContent The parsed CycloneDX BOM file
+     * @param {object} bomContent The parsed SPDX BOM file
      * @returns {Array<object>} The list of parser instances matching the ecosystems found
      */
     getRequiredParserSPDX = (bomContent) => {
-        console.error("The SPDX parser has not been implemented yet");
-        return []
+        let listParsers = [];
+
+        const hasReferenceStartingWith = (prefix) =>
+            bomContent.packages.some((component) =>
+                component.externalRefs?.some((ref) =>
+                    ref.referenceLocator?.startsWith(prefix)
+                )
+            );
+
+        if (hasReferenceStartingWith("pkg:maven/")) listParsers.push(new MavenParser());
+        if (hasReferenceStartingWith("pkg:npm/")) listParsers.push(new NpmParser());
+        if (hasReferenceStartingWith("pkg:pypi/")) listParsers.push(new PypiParser());
+        if (hasReferenceStartingWith("pkg:nuget/")) listParsers.push(new NugetParser());
+        if (hasReferenceStartingWith("pkg:cargo/")) listParsers.push(new CargoParser());
+        if (hasReferenceStartingWith("pkg:apk/")) listParsers.push(new ApkParser());
+        if (hasReferenceStartingWith("pkg:deb/")) listParsers.push(new DebParser());
+
+        return listParsers;
     };
 }

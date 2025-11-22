@@ -51,7 +51,7 @@ export class CoreParser {
 
             // Apply the CPE
             if (cpeDbEntry) {
-                const cpeMapping = this.getCPEMapping(cpeDbEntry, componentFullName, component, cpeOverride, verbose)
+                const cpeMapping = this.setCPEMappingCycloneDX(cpeDbEntry, componentFullName, component, cpeOverride, verbose)
                 component.cpe = cpeMapping
             } else if (!cpeDbEntry && verbose) {
                 console.log(`No mapping found for ${component.name}`);
@@ -62,14 +62,40 @@ export class CoreParser {
     }
 
     /**
-     * Placeholder parser for SPDX files.
-     * Currently not implemented.
+     * Parses a SPDX BOM and maps components to their corresponding CPE entries.
      *
-     * @returns {void}
+     * @param {object} cpeDbContent The CPE database content
+     * @param {object} bomFileContent The BOM file content to process
+     * @param {boolean} cpeOverride Whether to override existing CPEs in the BOM
+     * @param {boolean} verbose Whether to enable verbose logging
+     * @returns {object} The updated BOM file content with mapped CPEs
      */
-    parseSPDX = () => {
-        console.error("The SPDX parser as not been implemented yet")
-        process.exit(1)
+    parseSPDX = (cpeDbContent, bomFileContent, verbose) => {
+        // If there no component, exit
+        if (!bomFileContent) {
+            console.warn("No components found in BOM")
+            process.exit(0)
+        }
+
+        // Iterate trought BOM components list
+        bomFileContent.packages?.forEach(component => {
+            // SPDX doesn't have a group field!
+            const componentFullName = this.getComponentFullName(null, component.name)
+            // TODO: Our CPE database is based on CycloneDX (which uses both `group` and `name` fields).
+            // SPDX BOM files do not have a `group` field, so we cannot currently resolve CPEs for dependencies
+            // using both `group` and `name` (e.g., Java packages).
+            // In the future, we may need to handle SPDX files by ignoring the `group` field when looking up CPEs.
+            const cpeDbEntry = this.searchCpeMapping(componentFullName, cpeDbContent);
+
+            // SPDX can have multiple CPE, so we just add the CPE mapping from our CPE database in the list if not present
+            if (cpeDbEntry) {
+                this.setCPEMappingSPDX(cpeDbEntry, componentFullName, component, verbose)
+            } else if (!cpeDbEntry && verbose) {
+                console.log(`No mapping found for ${component.name}`);
+            }
+        })
+
+        return bomFileContent
     }
 
     /**
@@ -116,15 +142,20 @@ export class CoreParser {
     };
 
     /**
+     * Formats and applies the CPE entry for a CycloneDX BOM component.
+     *
+     * Rules:
+     * - If the component already has a CPE and `overrideCpe` is false → keep the existing CPE.
+     * - Otherwise → apply the CPE mapping from the database, replacing `VERSION_COMPONENT` with the actual version or "*" if missing.
      * 
-     * @param {object} cpeDbEntry The CPE database entry for a package corresponding to `componentFullName`
-     * @param {string} componentFullName Component full name as obtained from the function `getComponentFullName()`
-     * @param {object} component Component from the BOM file
-     * @param {boolean} overrideCpe Whether existing CPE are replaced or not
-     * @param {boolean} verbose Whether to enable verbose logging
-     * @returns {object} The `component` with the CPE mapping from the CPE database, or unchanged if it already has a mapping and `overrideCpe` is false
+     * @param {object} cpeDbEntry The CPE database entry for the package corresponding to `componentFullName`.
+     * @param {string} componentFullName Component full name as obtained from `getComponentFullName()`.
+     * @param {object} component Component object from the BOM file.
+     * @param {boolean} overrideCpe Whether to overwrite an existing CPE mapping.
+     * @param {boolean} verbose Whether to enable verbose logging.
+     * @returns {string} The applied CPE string for the component, or the existing CPE if unchanged.
      */
-    getCPEMapping = (cpeDbEntry, componentFullName, component, overrideCpe, verbose) => {
+    setCPEMappingCycloneDX = (cpeDbEntry, componentFullName, component, overrideCpe, verbose) => {
         // If the component already have a CPE prior to our mapping, and the user didn't specify we can override it, we ignore it and jump to the next component.
         if (component.cpe && overrideCpe === false)
             return component.cpe
@@ -141,5 +172,54 @@ export class CoreParser {
         if (verbose) console.log(`Mapped ${component.name} -> ${component.cpe}`)
 
         return component.cpe
+    }
+
+    /**
+     * Formats and applies the CPE entry for a SPDX BOM component.
+     *
+     * Rules:
+     * - If the component already has a CPE and `overrideCpe` is false → keep the existing CPE.
+     * - Otherwise → apply the CPE mapping from the database, replacing `VERSION_COMPONENT` with the actual version or "*" if missing.
+     * 
+     * @param {object} cpeDbEntry The CPE database entry for the package corresponding to `componentFullName`.
+     * @param {string} componentFullName Component full name as obtained from `getComponentFullName()`.
+     * @param {object} component Component object from the BOM file.
+     * @param {boolean} verbose Whether to enable verbose logging.
+     * @returns {string} The applied CPE string for the component, or the existing CPE if unchanged.
+     */
+    setCPEMappingSPDX = (cpeDbEntry, componentFullName, component, verbose) => {
+        // Set a CPE entry with the version of the component
+        const cpeWithoutVersion = cpeDbEntry.cpe
+        let cpeWithVersion
+    
+        if (component.versionInfo) 
+            cpeWithVersion = cpeWithoutVersion.replace("VERSION_COMPONENT", component.versionInfo)
+        else {
+            console.warn(`The package ${componentFullName} doesn't have any version, it will be mapped to all versions of the package`)
+            cpeWithVersion = cpeWithoutVersion.replace("VERSION_COMPONENT", "*")
+        }
+
+        // Create a externalRef object to add in the `externalRefs` field of the SPDX BOM file
+        const externalRef = {
+            referenceCategory: "SECURITY",
+            referenceType: `cpe23Type`,
+            referenceLocator: cpeWithVersion
+        }
+
+        // Check the CPE isn't already set in the file
+        let cpeAlreadyExisting = false
+        component.externalRefs?.forEach(ref => {
+            // JavaScript compares object references rather than their fields, so we use this trick
+            if (JSON.stringify(ref) === JSON.stringify(externalRef)) {
+                cpeAlreadyExisting = true
+            }
+        });
+
+        // If the CPE doesn't exist, then add it to the list
+        if (cpeAlreadyExisting === false) {
+            component.externalRefs.push(externalRef)
+        }
+            
+        if (verbose) console.log(`Mapped ${component.name} -> ${externalRef.referenceLocator}`)
     }
 }

@@ -4,5 +4,18 @@ node_modules/
 # Testing
 testdata/*
 !testdata/
-!testdata/bom.test.json
-!testdata/expected-bom.test.json
+!testdata/cyclonedx/
+!testdata/cyclonedx/*
+!testdata/spdx/
+!testdata/spdx/*
+
+# Testing folder used by unit tests
+testdata/cyclonedx-tests-gen/*
+!testdata/cyclonedx-tests-gen/
+!testdata/cyclonedx-tests-gen/.gitkeep
+testdata/spdx-tests-gen/*
+!testdata/spdx-tests-gen/
+!testdata/spdx-tests-gen/.gitkeep
+
+# Other
+tmp/

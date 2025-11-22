@@ -35,7 +35,7 @@ program.command('apply')
   .requiredOption('-o, --output-file <file>', 'Output mapped BOM file')
   .option('--no-update', 'Disable updating the CPE Mapping database')
   .option('-v, --verbose', 'Enable verbose logging')
-  .option('--override-cpe', 'Override BOM CPEs with mapped values from our database')
+  .option('--override-cpe', 'Override BOM CPEs with mapped values from our database (Only for CycloneDX BOM file)')
   .action((options) => {
     const { inputFile, outputFile, update, verbose, overrideCpe } = options;
     applyCPEMappings(inputFile, outputFile, update, verbose, overrideCpe, appConfig)
