@@ -14,22 +14,35 @@
  * limitations under the License.
  */
 
-import test from 'node:test';
-import assert from 'node:assert';
+import test from 'node:test'
+import assert from 'node:assert'
 
-import { NpmParser } from "../../src/parsers/npm-parser.js";
+import { NpmParser } from "../../src/parsers/npm-parser.js"
 
-const npmParser = new NpmParser();
+const npmParser = new NpmParser()
 
-const bomFile = {
+const bomFileCycloneDX = {
     bomFormat: "CycloneDX",
     specVersion: "1.6",
     components: [{
         name: "random",
-        purl: "pkg:maven/random-things@1.0.0",
+        purl: "pkg:npm/random-things@1.0.0",
         version: "1.0.0"
     }]
-};
+}
+
+const bomFileSPDX = {
+    spdxVersion: "SPDX-2.3",
+    packages: [{
+        name: "random",
+        versionInfo: "1.0.0",
+        externalRefs: [{
+            referenceCategory: "PACKAGE-MANAGER",
+            referenceType: "purl",
+            referenceLocator: "pkg:npm/random-things@1.0.0"
+        }]
+    }]
+}
 
 const cpeDb = {
     npm: {
@@ -38,69 +51,108 @@ const cpeDb = {
             { name: "random", cpe: 'cpe:2.3:a:random:random:VERSION_COMPONENT' }
         ]
     }
-};
+}
 
 test('NpmParser.searchCpeMapping finds correct mappings', async (t) => {
     await t.test('matches name only', () => {
-        const result = npmParser.searchCpeMapping('random', cpeDb);
-        assert.strictEqual(result.cpe, 'cpe:2.3:a:random:random:VERSION_COMPONENT');
-    });
+        const result = npmParser.searchCpeMapping('random', cpeDb)
+        assert.strictEqual(result.cpe, 'cpe:2.3:a:random:random:VERSION_COMPONENT')
+    })
 
     await t.test('returns undefined when no match', () => {
-        const result = npmParser.searchCpeMapping('non-existant-pkg-in-cpeDb', cpeDb);
-        assert.strictEqual(result, undefined);
-    });
-});
+        const result = npmParser.searchCpeMapping('non-existant-pkg-in-cpeDb', cpeDb)
+        assert.strictEqual(result, undefined)
+    })
+})
 
-test('NpmParser.setCPEMappingCycloneDX applies correct CPE mapping', async (t) => {
-    await t.test('returns correct CPE with version replaced', () => {
-        const cpe = npmParser.setCPEMappingCycloneDX(
+test('NpmParser.setCPEMappingCycloneDX and SPDX apply correct CPE mapping', async (t) => {
+    await t.test('(CycloneDX) - returns correct CPE with version replaced', () => {
+        const component = structuredClone(bomFileCycloneDX.components[0])
+        npmParser.setCPEMappingCycloneDX(
             cpeDb.npm.packages[1],
             undefined,
-            JSON.parse(JSON.stringify(bomFile.components[0])),
+            component,
             false,
             false
-        );
-        assert.strictEqual(cpe, "cpe:2.3:a:random:random:1.0.0");
-    });
+        )
+        assert.strictEqual(component.cpe, "cpe:2.3:a:random:random:1.0.0")
+    })
 
-    await t.test('uses "*" when version is missing', () => {
-        const comp = { ...bomFile.components[0], version: undefined };
-        const cpe = npmParser.setCPEMappingCycloneDX(
+    await t.test('(CycloneDX) - uses "*" when version is missing', () => {
+        const component = { ...bomFileCycloneDX.components[0], version: undefined }
+        npmParser.setCPEMappingCycloneDX(
             cpeDb.npm.packages[1],
             undefined,
-            comp,
+            component,
             false,
             false
-        );
-        assert.strictEqual(cpe, "cpe:2.3:a:random:random:*");
-    });
+        )
+        assert.strictEqual(component.cpe, "cpe:2.3:a:random:random:*")
+    })
 
-    await t.test('overrides existing CPE if overrideCpe is true', () => {
-        const component = { ...bomFile.components[0], cpe: 'existing:cpe' };
-        const cpe = npmParser.setCPEMappingCycloneDX(
+    await t.test('(CycloneDX) - overrides existing CPE if overrideCpe is true', () => {
+        const component = { ...bomFileCycloneDX.components[0], cpe: 'existing:cpe' }
+        npmParser.setCPEMappingCycloneDX(
             cpeDb.npm.packages[1],
             undefined,
             component,
             true,
             false
-        );
-        assert.strictEqual(cpe, "cpe:2.3:a:random:random:1.0.0");
-    });
-});
+        )
+        assert.strictEqual(component.cpe, "cpe:2.3:a:random:random:1.0.0")
+    })
 
-test('NpmParser.parseCycloneDX maps BOM components correctly', async (t) => {
-    const bomCopy = JSON.parse(JSON.stringify(bomFile));
+    await t.test('(SPDX) - returns correct CPE with version replaced', () => {
+        const component = structuredClone(bomFileSPDX.packages[0])
+        npmParser.setCPEMappingSPDX(
+            cpeDb.npm.packages[1],
+            "random",
+            component,
+            false
+        )
+        const componentCpeRef = component.externalRefs.pop()
+        assert.strictEqual(componentCpeRef.referenceLocator, "cpe:2.3:a:random:random:1.0.0")
+    })
+
+    await t.test('(SPDX) - uses "*" when versionInfo is missing', () => {
+        const component = { ...bomFileSPDX.packages[0], versionInfo: undefined }
+        npmParser.setCPEMappingSPDX(
+            cpeDb.npm.packages[1],
+            "random",
+            component,
+            false
+        )
+        const componentCpeRef = component.externalRefs.pop()
+        assert.strictEqual(componentCpeRef.referenceLocator, "cpe:2.3:a:random:random:*")
+    })
+})
+
+test('NpmParser.parseCycloneDX maps BOM components correctly', async () => {
+    const bomCopy = structuredClone(bomFileCycloneDX)
     const expectedBom = {
         bomFormat: "CycloneDX",
         specVersion: "1.6",
         components: [{
             name: "random",
-            purl: "pkg:maven/random-things@1.0.0",
+            purl: "pkg:npm/random-things@1.0.0",
             version: "1.0.0",
             cpe: "cpe:2.3:a:random:random:1.0.0"
         }]
-    };
-    const mappedBom = npmParser.parseCycloneDX(cpeDb, bomCopy, false, false);
-    assert.deepStrictEqual(mappedBom, expectedBom);
-});
+    }
+    const mappedBom = npmParser.parseCycloneDX(cpeDb, bomCopy, false, false)
+    assert.deepStrictEqual(mappedBom, expectedBom)
+})
+
+test('NpmParser.parseSPDX maps SPDX packages correctly', async () => {
+    const bomCopy = structuredClone(bomFileSPDX)
+
+    let expectedBom = structuredClone(bomFileSPDX)
+    expectedBom.packages[0].externalRefs.push({
+        referenceCategory: "SECURITY",
+        referenceType: "cpe23Type",
+        referenceLocator: "cpe:2.3:a:random:random:1.0.0"
+    })
+
+    const mappedBom = npmParser.parseSPDX(cpeDb, bomCopy, false)
+    assert.deepStrictEqual(mappedBom, expectedBom)
+})

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-import test from 'node:test';
-import assert from 'node:assert';
+import test from 'node:test'
+import assert from 'node:assert'
 
-import { NugetParser } from "../../src/parsers/nuget-parser.js";
+import { NugetParser } from "../../src/parsers/nuget-parser.js"
 
-const nugetParser = new NugetParser();
+const nugetParser = new NugetParser()
 
-const bomFile = {
+const bomFileCycloneDX = {
     bomFormat: "CycloneDX",
     specVersion: "1.6",
     components: [{
@@ -29,7 +29,20 @@ const bomFile = {
         purl: "pkg:nuget/newtonsoft.json@13.0.3",
         version: "13.0.3"
     }]
-};
+}
+
+const bomFileSPDX = {
+    spdxVersion: "SPDX-2.3",
+    packages: [{
+        name: "newtonsoft.json",
+        versionInfo: "13.0.3",
+        externalRefs: [{
+            referenceCategory: "PACKAGE-MANAGER",
+            referenceType: "purl",
+            referenceLocator: "pkg:nuget/newtonsoft.json@13.0.3"
+        }]
+    }]
+}
 
 const cpeDb = {
     nuget: {
@@ -38,59 +51,84 @@ const cpeDb = {
             { name: 'newtonsoft.json', cpe: 'cpe:2.3:a:newtonsoft:json.net:VERSION_COMPONENT' }
         ]
     }
-};
+}
 
 test('NugetParser.searchCpeMapping finds correct mappings', async (t) => {
     await t.test('matches name only', () => {
-        const result = nugetParser.searchCpeMapping('newtonsoft.json', cpeDb);
-        assert.strictEqual(result.cpe, 'cpe:2.3:a:newtonsoft:json.net:VERSION_COMPONENT');
-    });
+        const result = nugetParser.searchCpeMapping('newtonsoft.json', cpeDb)
+        assert.strictEqual(result.cpe, 'cpe:2.3:a:newtonsoft:json.net:VERSION_COMPONENT')
+    })
 
     await t.test('returns undefined when no match is found', () => {
-        const result = nugetParser.searchCpeMapping('nonexistent-package', cpeDb);
-        assert.strictEqual(result, undefined);
-    });
-});
+        const result = nugetParser.searchCpeMapping('nonexistent-package', cpeDb)
+        assert.strictEqual(result, undefined)
+    })
+})
 
-test('NugetParser.setCPEMappingCycloneDX applies correct CPE mapping', async (t) => {
-    await t.test('returns correct CPE with version replaced', () => {
-        const cpe = nugetParser.setCPEMappingCycloneDX(
+test('NugetParser.setCPEMappingCycloneDX and SPDX apply correct CPE mapping', async (t) => {
+    await t.test('(CycloneDX) - returns correct CPE with version replaced', () => {
+        const component = structuredClone(bomFileCycloneDX.components[0])
+        nugetParser.setCPEMappingCycloneDX(
             cpeDb.nuget.packages[1],
             undefined,
-            JSON.parse(JSON.stringify(bomFile.components[0])),
+            component,
             false,
             false
-        );
-        assert.strictEqual(cpe, "cpe:2.3:a:newtonsoft:json.net:13.0.3");
-    });
+        )
+        assert.strictEqual(component.cpe, "cpe:2.3:a:newtonsoft:json.net:13.0.3")
+    })
 
-    await t.test('uses "*" when version is missing', () => {
-        const comp = { ...bomFile.components[0], version: undefined };
-        const cpe = nugetParser.setCPEMappingCycloneDX(
+    await t.test('(CycloneDX) - uses "*" when version is missing', () => {
+        const component = { ...bomFileCycloneDX.components[0], version: undefined }
+        nugetParser.setCPEMappingCycloneDX(
             cpeDb.nuget.packages[1],
             undefined,
-            comp,
+            component,
             false,
             false
-        );
-        assert.strictEqual(cpe, "cpe:2.3:a:newtonsoft:json.net:*");
-    });
+        )
+        assert.strictEqual(component.cpe, "cpe:2.3:a:newtonsoft:json.net:*")
+    })
 
-    await t.test('overrides existing CPE if overrideCpe is true', () => {
-        const component = { ...bomFile.components[0], cpe: 'existing:cpe' };
-        const cpe = nugetParser.setCPEMappingCycloneDX(
+    await t.test('(CycloneDX) - overrides existing CPE if overrideCpe is true', () => {
+        const component = { ...bomFileCycloneDX.components[0], cpe: 'existing:cpe' }
+        nugetParser.setCPEMappingCycloneDX(
             cpeDb.nuget.packages[1],
             undefined,
             component,
             true,
             false
-        );
-        assert.strictEqual(cpe, "cpe:2.3:a:newtonsoft:json.net:13.0.3");
-    });
-});
+        )
+        assert.strictEqual(component.cpe, "cpe:2.3:a:newtonsoft:json.net:13.0.3")
+    })
 
-test('NugetParser.parseCycloneDX maps BOM components correctly', async (t) => {
-    const bomCopy = JSON.parse(JSON.stringify(bomFile));
+    await t.test('(SPDX) - returns correct CPE with version replaced', () => {
+        const component = structuredClone(bomFileSPDX.packages[0])
+        nugetParser.setCPEMappingSPDX(
+            cpeDb.nuget.packages[1],
+            "newtonsoft.json",
+            component,
+            false
+        )
+        const componentCpeRef = component.externalRefs.pop()
+        assert.strictEqual(componentCpeRef.referenceLocator, "cpe:2.3:a:newtonsoft:json.net:13.0.3")
+    })
+
+    await t.test('(SPDX) - uses "*" when versionInfo is missing', () => {
+        const component = { ...bomFileSPDX.packages[0], versionInfo: undefined }
+        nugetParser.setCPEMappingSPDX(
+            cpeDb.nuget.packages[1],
+            "newtonsoft.json",
+            component,
+            false
+        )
+        const componentCpeRef = component.externalRefs.pop()
+        assert.strictEqual(componentCpeRef.referenceLocator, "cpe:2.3:a:newtonsoft:json.net:*")
+    })
+})
+
+test('NugetParser.parseCycloneDX maps BOM components correctly', async () => {
+    const bomCopy = structuredClone(bomFileCycloneDX)
     const expectedBom = {
         bomFormat: "CycloneDX",
         specVersion: "1.6",
@@ -100,7 +138,21 @@ test('NugetParser.parseCycloneDX maps BOM components correctly', async (t) => {
             version: "13.0.3",
             cpe: "cpe:2.3:a:newtonsoft:json.net:13.0.3"
         }]
-    };
-    const mappedBom = nugetParser.parseCycloneDX(cpeDb, bomCopy, false, false);
-    assert.deepStrictEqual(mappedBom, expectedBom);
-});
+    }
+    const mappedBom = nugetParser.parseCycloneDX(cpeDb, bomCopy, false, false)
+    assert.deepStrictEqual(mappedBom, expectedBom)
+})
+
+test('NugetParser.parseSPDX maps SPDX packages correctly', async () => {
+    const bomCopy = structuredClone(bomFileSPDX)
+
+    let expectedBom = structuredClone(bomFileSPDX)
+    expectedBom.packages[0].externalRefs.push({
+        referenceCategory: "SECURITY",
+        referenceType: "cpe23Type",
+        referenceLocator: "cpe:2.3:a:newtonsoft:json.net:13.0.3"
+    })
+
+    const mappedBom = nugetParser.parseSPDX(cpeDb, bomCopy, false)
+    assert.deepStrictEqual(mappedBom, expectedBom)
+})

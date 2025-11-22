@@ -21,20 +21,38 @@ import { applyCPEMappings } from '../../src/commands/apply.js'
 import { setupAppConfig } from '../../src/config.js'
 import { readFileSync } from 'node:fs';
 
-const inputFile = "testdata/cyclonedx/bom.test.json"
-const expectedFile = "testdata/cyclonedx/expected-bom.test.json"
-const outputFile = "testdata/cyclonedx-tests-gen/result.test.json"
+const inputFileCycloneDX = "testdata/cyclonedx/bom.test.json"
+const expectedFileCycloneDX = "testdata/cyclonedx/expected-bom.test.json"
+const outputFileCycloneDX = "testdata/cyclonedx-tests-gen/result.test.json"
 
-test('applyCPEMappings apply the correct CPE mapping to a BOM file', async (t) => {
-    const result = await applyCPEMappings(inputFile, outputFile, true, false, false, setupAppConfig())
-    const expectedFileContent = JSON.parse(readFileSync(expectedFile, 'utf-8'))
-    const outputFileContent = JSON.parse(readFileSync(outputFile, 'utf-8'))
+test('applyCPEMappings apply the correct CPE mapping to a CycloneDX BOM file', async (t) => {
+    const result = await applyCPEMappings(inputFileCycloneDX, outputFileCycloneDX, true, false, false, setupAppConfig())
+    const expectedFileContent = JSON.parse(readFileSync(expectedFileCycloneDX, 'utf-8'))
+    const outputFileContent = JSON.parse(readFileSync(outputFileCycloneDX, 'utf-8'))
     
-    await t.test('the process should succeed', () => {
+    await t.test('(CycloneDX) - the process should succeed', () => {
         assert.strictEqual(result, true)
     })
 
-    await t.test('the two BOM should be identical', () => {
+    await t.test('(CycloneDX) - the two BOM should be identical', () => {
+        assert.deepStrictEqual(outputFileContent, expectedFileContent)
+    })
+})
+
+const inputFileSPDX = "testdata/spdx/bom.test.json"
+const expectedFileSPDX = "testdata/spdx/expected-bom.test.json"
+const outputFileSPDX = "testdata/spdx-tests-gen/result.test.json"
+
+test('applyCPEMappings apply the correct CPE mapping to a SPDX BOM file', async (t) => {
+    const result = await applyCPEMappings(inputFileSPDX, outputFileSPDX, true, false, false, setupAppConfig())
+    const expectedFileContent = JSON.parse(readFileSync(expectedFileSPDX, 'utf-8'))
+    const outputFileContent = JSON.parse(readFileSync(outputFileSPDX, 'utf-8'))
+    
+    await t.test('(SPDX) - the process should succeed', () => {
+        assert.strictEqual(result, true)
+    })
+
+    await t.test('(SPDX) - the two BOM should be identical', () => {
         assert.deepStrictEqual(outputFileContent, expectedFileContent)
     })
 })

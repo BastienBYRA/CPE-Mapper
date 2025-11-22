@@ -79,12 +79,12 @@ export class CoreParser {
 
         // Iterate trought BOM components list
         bomFileContent.packages?.forEach(component => {
-            // SPDX doesn't have a group field!
+            // SPDX doesn't have a group field! So we ignore it
             const componentFullName = this.getComponentFullName(null, component.name)
-            // TODO: Our CPE database is based on CycloneDX (which uses both `group` and `name` fields).
-            // SPDX BOM files do not have a `group` field, so we cannot currently resolve CPEs for dependencies
-            // using both `group` and `name` (e.g., Java packages).
-            // In the future, we may need to handle SPDX files by ignoring the `group` field when looking up CPEs.
+            // Our CPE database is based on CycloneDX (which uses both `group` and `name` fields).
+            // SPDX BOM files do not have a `group` field, so we just ignore it to resolve CPEs for dependencies
+            // e.g. Instead of using `group` and `name` for Java packages, we just use `name`.
+            // In the future, we may need to do something about that, maybe?
             const cpeDbEntry = this.searchCpeMapping(componentFullName, cpeDbContent);
 
             // SPDX can have multiple CPE, so we just add the CPE mapping from our CPE database in the list if not present
