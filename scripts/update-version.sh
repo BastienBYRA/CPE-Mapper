@@ -32,3 +32,6 @@ sed -E -i "s|(image:\s+ghcr.io/bastienbyra/cpe-mapper:)[0-9]+\.[0-9]+\.[0-9]+|\1
 # Update the version in package.json and update the package-lock.json
 sed -E -i "s/\"version\": \"[0-9]+\.[0-9]+\.[0-9]+\"/\"version\": \"$NEW_RELEASE_VERSION\"/" package.json
 npm install
+
+# Update the version in the action.yml presentation in the README.md
+sed -i "s|\(- uses: BastienBYRA/CPE-Mapper@\)[^ ]*|\1$NEW_RELEASE_VERSION|" README.md
