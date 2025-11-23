@@ -31,12 +31,12 @@ inputs:
     description: Whether CPE-Mapper should override the existing CPE in the BOM input file or not. Choices are `true` or `false`. Default is `false`
     required: false
   verbose:
-    description: Whether CPE-Mapper is running in verbose mode or not. Choices are `true` or `false`. Default is `false`
+    description: Whether CPE-Mapper is running in verbose mode or not. Choices are `true` or `false` (CycloneDX only). Default is `false`
     required: false
 
 runs:
   using: docker
-  image: ghcr.io/bastienbyra/cpe-mapper:1.1.0
+  image: ghcr.io/bastienbyra/cpe-mapper:1.2.0
   entrypoint: node
   # **Note**: GitHub Actions sets the working directory to /github/workspace, 
   # so the container runs outside of /cpe-mapper. Since dependencies are installed 
