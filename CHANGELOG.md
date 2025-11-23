@@ -3,6 +3,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.2.0] - 2025-11-23
+
+### Added
+- Add support for SPDX BOM files
+
+### Changed
+- The `-u --update` flag became `--no-update` because by default we assume users always want to get the latest version of our database
+
+### Fixed
+- Fix a bug that prevented DebParser from identifying packages in the deb ecosystem (it was incorrectly looking for `apt` instead of `deb`)
+
+### Security
+- node_modules/js-yaml 4.1.0 to 4.1.1 (https://nvd.nist.gov/vuln/detail/CVE-2025-64718)
+
 ## [1.1.0] - 2025-10-08
 
 ### Breaking Change

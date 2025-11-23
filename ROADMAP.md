@@ -25,11 +25,8 @@ Optional features or ideas that don’t provide much value but could be fun or i
 ## Database Entries
 - Add new entries to the [CPE database](data/cpe-mapper.json)
 
-## Mandatory (for 1.2.0)
-- [ ] Add support for SPDX 2.x JSON format.
-- [ ] Add CI/CD workflow to ensure that when a branch is released, the version in the files is updated correctly (create a variation of `scripts/update-version.sh`).
-- [ ] Add CI/CD workflow to build the Docker image for all supported ecosystems and architectures.
-- [ ] Add CI/CD workflow to build a binary of the application for all supported ecosystems and architectures (can be done using Bun.js `build` command).
+## Mandatory (for 1.3.0)
+- Nothing mandatory as of now.
 
 ## High Priority
 - [ ] Add integration tests (preferably without extra dependencies, by running the CLI in a development environment such as a Docker container).
@@ -40,12 +37,15 @@ Optional features or ideas that don’t provide much value but could be fun or i
   - [ ] Add a `check` subcommand to verify that the provided values are valid.
 - [ ] Improve the `apply` command with the `--custom-db-path` and `--custom-db-url` options, allowing users to provide a custom CPE mapping database.
   - [ ] Add a `--disable-default-db` option to disable the default CPE mapping database.
+- [ ] Add CI/CD workflow to build the Docker image for all supported ecosystems and architectures.
 
 ## Low Priority
 - [ ] `search` command: Search if a package already has a mapping in the database using `--groupname`, `--name`, or `--fullname`.
 - [ ] Add support for XML files (may require an additional dependency).
 - [ ] Add a `server` command and mode, allowing users to deploy CPE-Mapper as a server capable of consuming BOM files through a web API.
 - [ ] Add a mechanism for users to specify which mappings from the CPE database should be ignored.
+- [ ] Add CI/CD workflow to ensure that when a branch is released, the version in the files is updated correctly (create a variation of `scripts/update-version.sh`).
+- [ ] Add CI/CD workflow to build a binary of the application for all supported ecosystems and architectures.
 
 ## Bonus
 - [ ] `compliance` command with the following subcommands:

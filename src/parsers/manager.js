@@ -37,7 +37,6 @@ export class ParserManager {
      * @param {string} bomFormat The detected BOM format (e.g., "CycloneDX" or "SPDX")
      * @param {object} bomContent The BOM file content
      * @returns {Array<object>} A list of parser instances required for processing the BOM
-     * @throws {Error} Exits the process if no known ecosystems are found
      */
     getRequiredParsers = (bomFormat, bomContent) => {
         let listParsers = [];
@@ -71,21 +70,37 @@ export class ParserManager {
             listParsers.push(new CargoParser());
         if (bomContent.components.some((component) => component.purl?.startsWith("pkg:apk/")))
             listParsers.push(new ApkParser());
-        if (bomContent.components.some((component) => component.purl?.startsWith("pkg:apt/")))
+        if (bomContent.components.some((component) => component.purl?.startsWith("pkg:deb/")))
             listParsers.push(new DebParser());
 
         return listParsers;
     };
 
     /**
-     * Detects which ecosystems are present in an SPDX BOM file.
-     * This method is currently not implemented.
+     * Detects which ecosystems are present in a SPDX BOM file and
+     * returns the appropriate parser instances for each one.
      *
      * @param {object} bomContent The parsed SPDX BOM file
-     * @returns {void}
+     * @returns {Array<object>} The list of parser instances matching the ecosystems found
      */
     getRequiredParserSPDX = (bomContent) => {
-        console.error("The SPDX parser has not been implemented yet");
-        process.exit(1);
+        let listParsers = [];
+
+        const hasReferenceStartingWith = (prefix) =>
+            bomContent.packages.some((component) =>
+                component.externalRefs?.some((ref) =>
+                    ref.referenceLocator?.startsWith(prefix)
+                )
+            );
+
+        if (hasReferenceStartingWith("pkg:maven/")) listParsers.push(new MavenParser());
+        if (hasReferenceStartingWith("pkg:npm/")) listParsers.push(new NpmParser());
+        if (hasReferenceStartingWith("pkg:pypi/")) listParsers.push(new PypiParser());
+        if (hasReferenceStartingWith("pkg:nuget/")) listParsers.push(new NugetParser());
+        if (hasReferenceStartingWith("pkg:cargo/")) listParsers.push(new CargoParser());
+        if (hasReferenceStartingWith("pkg:apk/")) listParsers.push(new ApkParser());
+        if (hasReferenceStartingWith("pkg:deb/")) listParsers.push(new DebParser());
+
+        return listParsers;
     };
 }

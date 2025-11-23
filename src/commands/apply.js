@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { updateCPEDatabase } from './update.js';
 import { AppConfig } from '../config.js';
 import { BOMFormats, guessBOMFormat } from '../utils/utils-bom.js';
@@ -62,12 +62,15 @@ export const applyCPEMappings = async (inputFile, outputFile, update, verbose, o
     }
 
     // Read the BOM file and applies the CPE database mapping
+    //
+    // TODO: Optimize the code so only the required parser runs for a given component
+    // Could probably be done by reading the component PURL before iterating on the parsers list
+    // or if we iterate on it, then quit immediately if it is not the right one.
     listRequiredParsers.forEach(parser => {
         if (bomFormat == BOMFormats.CycloneDX)
             parser.parseCycloneDX(cpeDbContent, bomContent, overrideCpe, verbose)
         else
-            // TODO: Not yet implemented
-            parser.parseSPDX()
+            parser.parseSPDX(cpeDbContent, bomContent, verbose)
     });
 
     // Save mapped BOM

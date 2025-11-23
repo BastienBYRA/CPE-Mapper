@@ -8,8 +8,8 @@ Its main goal is to improve vulnerability identification in cases where standard
 - ⚡ Lightweight and fast
 - 🔒 Security-focused with evidence-backed mappings
 - 🔍 Improved vulnerability detection through custom CPE mappings
-- ✨ Compatible CycloneDX JSON from 1.2 to 1.6
-- 🧩 Roadmap includes SPDX 2.x, XML support and custom user mappings database
+- ✨ Compatible CycloneDX JSON and SPDX JSON
+- 🧩 Roadmap includes XML support, custom user mappings database and deploying it as a server
 
 ---
 
@@ -60,7 +60,7 @@ npm install -g @bastienbyra/cpe-mapper
 # You can then run it using `cpe-mapper`
 ```
 
-2. Through a `Docker image`.
+2. Through our `Docker image`.
 ```bash
 docker run -v path/to/your/bom/folder:/data --rm ghcr.io/bastienbyra/cpe-mapper:latest apply -i /data/bom.json -o /data/mapped_bom.json
 ```
@@ -76,8 +76,8 @@ Apply CPE mappings to a CycloneDX BOM file
 Options:
   -i, --input-file <file>   Input BOM file (JSON)
   -o, --output-file <file>  Output mapped BOM file
-  -u, --update              Update the CPE Mapping database
-  --override-cpe            Override BOM CPEs with mapped values from our database
+  -u, --no-update           Disable updating the CPE Mapping database
+  --override-cpe            Override BOM CPEs with mapped values from our database (CycloneDX only)
   -v, --verbose             Enable verbose logging
   -h, --help                display help for command
 ```
@@ -91,6 +91,10 @@ Apply CPE-mapper database mappings to a BOM file, overwriting the existing CPEs 
 ```bash
 cpe-mapper apply -i input-bom.json -o output-bom.json --override-cpe
 ```
+
+> **Note**:
+>
+> The `--override-cpe` flag is intended only for CycloneDX files, as SPDX supports multiple externalRefs (and therefore multiple CPE mappings), whereas CycloneDX files can have only one
 
 #### Update
 ```bash
@@ -115,7 +119,7 @@ CPE-Mapper provides a GitHub Action that can be used to apply CPE mappings to yo
 > **Note**: You can find the configuration in the [action.yml](./action.yml) file.
 
 ```yaml
-- uses: BastienBYRA/CPE-Mapper@main
+- uses: BastienBYRA/CPE-Mapper@1.2.0
   with:
     # The input BOM file to which CPE-Mapper applies the mapping.
     # Required. Example: testdata/bom.test.json
@@ -125,7 +129,7 @@ CPE-Mapper provides a GitHub Action that can be used to apply CPE mappings to yo
     # Required. Example: testdata/bom.result.json
     output-file: ''
 
-    # Whether to override existing CPEs in the input BOM file. Choices are `true` or `false`.
+    # Whether to override existing CPEs in the input BOM file (CycloneDX only). Choices are `true` or `false`.
     # Optional. Default: false
     override-cpe: false
 

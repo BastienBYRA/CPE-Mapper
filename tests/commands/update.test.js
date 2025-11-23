@@ -16,7 +16,7 @@
 
 import test from 'node:test';
 import assert from 'node:assert';
-import { TEST__UPDATE_JS } from '../src/commands/update.js';
+import { TEST__UPDATE_JS } from '../../src/commands/update.js';
 import { rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 const { getLocalDatabaseHash, getDistantDatabaseHash } = TEST__UPDATE_JS

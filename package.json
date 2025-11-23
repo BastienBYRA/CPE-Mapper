@@ -1,6 +1,6 @@
 {
   "name": "@bastienbyra/cpe-mapper",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "CPE-mapper is a CLI tool and JSON-based database designed to accurately map software package names to their corresponding CPEs (Common Platform Enumerations). Its main goal is to improve vulnerability identification in cases where standard package names fail to match known CPEs",
   "main": "src/cli.js",
   "type": "module",
@@ -9,8 +9,14 @@
     "help": "node src/cli.js help",
     "test": "NODE_ENV=test node --test",
     "wtest": "set NODE_ENV=test&& node --test",
-    "test-apply": "node src/cli.js apply -i testdata/bom.test.json -o testdata/result.test.json",
-    "update-version": "scripts/update-version.sh"
+    "test-cov": "NODE_ENV=test node --experimental-test-coverage --test",
+    "wtest-cov": "set NODE_ENV=test&& node --experimental-test-coverage --test",
+    "test-apply-cdx": "node src/cli.js apply -i testdata/cyclonedx/bom.test.json -o testdata/cyclonedx-tests-gen/result.test.json",
+    "test-apply-spdx": "node src/cli.js apply -i testdata/spdx/bom.test.json -o testdata/spdx-tests-gen/result.test.json",
+    "update-version": "scripts/update-version.sh",
+    "sbom": "npm sbom --sbom-format cyclonedx",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -22,7 +28,12 @@
     "url": "https://github.com/BastienBYRA/CPE-Mapper/issues"
   },
   "keywords": [
-    "security", "cpe", "nvd", "vulnerability", "sbom", "cyclonedx"
+    "security",
+    "cpe",
+    "nvd",
+    "vulnerability",
+    "sbom",
+    "cyclonedx"
   ],
   "homepage": "https://github.com/BastienBYRA/CPE-Mapper#readme",
   "dependencies": {
@@ -31,5 +42,10 @@
   },
   "bin": {
     "cpe-mapper": "./src/cli.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "eslint": "^9.37.0",
+    "globals": "^16.4.0"
   }
 }

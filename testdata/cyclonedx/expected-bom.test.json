@@ -1,0 +1,32 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2025-09-19T12:00:00Z",
+    "tools": [
+      {
+        "vendor": "ExampleVendor",
+        "name": "ExampleTool",
+        "version": "1.0.0"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "tomcat-embed-core",
+      "group": "org.apache.tomcat.embed",
+      "version": "10.1.39",
+      "purl": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.39",
+      "cpe": "cpe:2.3:a:apache:tomcat:10.1.39:*:*:*:*:*:*:*"
+    },
+    {
+      "type": "library",
+      "name": "jspdf",
+      "version": "1.1.1",
+      "purl": "pkg:npm/jspdf@1.1.1",
+      "cpe": "cpe:2.3:a:parall:jspdf:1.1.1:*:*:*:*:node.js:*:*"
+    }
+  ]
+}
