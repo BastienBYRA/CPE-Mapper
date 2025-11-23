@@ -71,7 +71,7 @@ docker run -v path/to/your/bom/folder:/data --rm ghcr.io/bastienbyra/cpe-mapper:
 ```bash
 Usage: cpe-mapper apply [options]
 
-Apply CPE mappings to a CycloneDX BOM file
+Apply CPE mappings to a BOM file
 
 Options:
   -i, --input-file <file>   Input BOM file (JSON)

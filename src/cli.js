@@ -30,7 +30,7 @@ Its main goal is to improve vulnerability identification in cases where standard
   .version('1.1.0');
 
 program.command('apply')
-  .description('Apply CPE mappings to a CycloneDX BOM file')
+  .description('Apply CPE mappings to a BOM file')
   .requiredOption('-i, --input-file <file>', 'Input BOM file (JSON)')
   .requiredOption('-o, --output-file <file>', 'Output mapped BOM file')
   .option('--no-update', 'Disable updating the CPE Mapping database')
