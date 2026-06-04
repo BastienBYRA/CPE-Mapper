@@ -171,3 +171,10 @@ If you would like to contribute to this project, whether by **reporting issues**
 
 ## Roadmap
 The [ROADMAP](./ROADMAP.md) lists all the tasks planned for the future.
+
+## AI Usage
+You may use AI as an assistant when contributing to this project. The only thing I ask
+is that you verify the AI-written code is correct and secure.
+
+The AI configuration files in this project (e.g. `CLAUDE.md`) incorporate the
+[4 Karpathy rules](https://github.com/multica-ai/andrej-karpathy-skills) as a baseline for better AI-assisted code.
